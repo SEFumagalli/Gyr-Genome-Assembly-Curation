@@ -35,7 +35,7 @@ This repository contains **documentation**, **tutorials**, and **scripts** for p
         19. HiFi-Duplex, ONT, Pore-C, Trio (best assembly)
 
 
-- Using the best quality assembly (#19), this project also highlights the improvements over several currant NCBI references:
+- Using the best quality assembly (s in the list above), this project also highlights the improvements over several currant NCBI references:
 
     -*Bos indicus*
         - **[NIAB-ARS_B.indTharparkar_mat_pri_1.0](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_029378745.1/)**
