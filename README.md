@@ -36,11 +36,13 @@ This repository contains **documentation**, **tutorials**, and **scripts** for p
 
 
 - Using the best quality assembly (#19), this project also highlights the improvements over several currant NCBI references:
+
     -*Bos indicus*
         - **[NIAB-ARS_B.indTharparkar_mat_pri_1.0](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_029378745.1/)**
             - Sahiwal x Tharparkar
             - haploid (maternal haplotype of diploid)
             - PacBio Sequel
+
     -*Bos taurus*
         - **[ARS-UCD2.0](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_002263795.3/)**
             - Hereford
