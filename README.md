@@ -15,6 +15,7 @@ This repository contains **documentation**, **tutorials**, and **scripts** for p
 	- Blood was sampled from the male F1 Gyr and its parents
 
 	- 19 data combinations arranged for the Verkko assemblier --hifi, --nano, and phasing data flags.
+        
         	1. PacBio long reads -> HiFi, Oxford Nanopore ultra long reads -> ONT, and DoveTail Genomics' Hi-C short reads -> Omni-C
         	2. HiFi, ONT, Oxford Nanopore Hi-C short reads -> Pore-C
         	3. HiFi, ONT, Illumina F1, dam, and sire short reads -> Trio
@@ -36,36 +37,35 @@ This repository contains **documentation**, **tutorials**, and **scripts** for p
         	19. HiFi-Duplex, ONT, Pore-C, Trio (best assembly)
 
 
-- Using the best quality assembly (s in the list above), this project also highlights the improvements over several current NCBI references:
+- Using the best quality assembly (19 in the list above), this project also highlights the improvements over several current NCBI references:
 	-*Bos indicus*
         	- **[NIAB-ARS_B.indTharparkar_mat_pri_1.0](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_029378745.1/)**
-            		- Sahiwal x Tharparkar
-            		- haploid (maternal haplotype of diploid)
+            	- Sahiwal x Tharparkar
+            	- haploid (maternal haplotype)
 			- female calf 
-            		- PacBio Sequel
+            	- PacBio Sequel
 			- TrioCanu v. 2.0
 
     	-*Bos taurus*
         	- **[ARS-UCD2.0](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_002263795.3/)**
-	            	- Hereford
-			- haploid
+	        - Hereford
+			- diploid/haploid 
 			- male 11 yrs
-	       		- Dominette left lung
-            		- PacBio; Illumina NextSeq 500; Illumina HiSeq; Illumina GAII
-			- Falcon v. FEB-2016
-			- 
+	       	- Dominette left lung
+            	- PacBio; Illumina NextSeq 500; Illumina HiSeq; Illumina GAII
+			- Falcon v. FEB-2016 
 	
 	- *Bos indicus* x *Bos taurus*
 		- **[UOA_Angus_1](https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_003369685.2/)**
 			- Angus x Brahman F1 hybrid
-			- haploid (principal haplotype of diploid)
+			- haploid pseudohaplotype (principal haplotype)
 			- male fetus
 			- PacBio RSII; PacBio Sequel; Illumina NextSeq
 			- TrioCanu v. 1.6
 
 		- **[UOA_Brahman_1](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_003369695.1/)**
 			- Angus x Brahman F1 hybrid
-			- haploid (alternate haplotype of diploid)
+			- haploid pseudohaplotype (alternate haplotype)
 			- male fetus
 			- PacBio Sequel; PacBio RSII; Illumina NextSeq
 			- TrioCanu v. 1.6
