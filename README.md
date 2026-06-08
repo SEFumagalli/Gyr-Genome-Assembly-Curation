@@ -39,18 +39,18 @@ This repository contains **documentation**, **tutorials**, and **scripts** for p
 
 - Using the best quality assembly (19 in the list above), this project also highlights the improvements over several current NCBI references:
 
-	-*Bos indicus*
-        	- **[NIAB-ARS_B.indTharparkar_mat_pri_1.0](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_029378745.1/)**
-            	- Sahiwal x Tharparkar
-            	- haploid (maternal haplotype)
-			- female calf 
+    -*Bos indicus*
+        - **[NIAB-ARS_B.indTharparkar_mat_pri_1.0](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_029378745.1/)** 
+            - Sahiwal x Tharparkar
+            - haploid (maternal haplotype)
+            - female calf 
             	- PacBio Sequel
 			- TrioCanu v. 2.0
 
     	-*Bos taurus*
         	- **[ARS-UCD2.0](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_002263795.3/)** 
             	- Hereford
-			- diploid/haploid 
+            	- diploid/haploid 
 			- male 11 yrs
 			- Dominette left lung
 			- PacBio; Illumina NextSeq 500; Illumina HiSeq; Illumina GAII
