@@ -8,11 +8,11 @@ To run statistics on the raw reads for all data types used in Gyr project, run m
 
 **merged_read_stats.sh**
 
-    _Scripts called:_
+    Scripts called:
         - merged_read_stats.py
         - calcReadsOver100kb.py
         
-    _Input:_
+    Input:
         - need python environment for >100kb stats and graphs
             - requires:
                 - pandas as pd
@@ -28,6 +28,6 @@ To run statistics on the raw reads for all data types used in Gyr project, run m
             - names for >100kb stat output files
             - names for >100kb stat graphs
             
-    _Output:_
+    Output:
         - csv table with all general and >100kb stats
         - bargraphs for coverage, N50, and sum length
