@@ -6,6 +6,10 @@ To run statistics on the raw reads for all data types used in Gyr project, run m
 
 **merged_read_stats.sh**
 
+    *Scripts called:*
+        - merged_read_stats.py
+        - calcReadsOver100kb.py
+        
     *Input:*
         - need python environment for >100kb stats and graphs
             - requires:
