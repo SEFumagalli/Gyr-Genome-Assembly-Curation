@@ -1,11 +1,13 @@
+#created by Sarah E. Fumagalli
+
 import pandas as pd
-import numpy as np
-import sys
-import openpyxl
+#import numpy as np
+#import sys
+#import openpyxl
 import matplotlib.pyplot as plt
 import argparse 
-import seaborn as sns
-from matplotlib.colors import ListedColormap
+#import seaborn as sns
+#from matplotlib.colors import ListedColormap
 
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None)
@@ -18,7 +20,7 @@ parser.add_argument("--select_reads", nargs="+", help='array of read stats over 
 parser.add_argument("--all_reads_filenames",nargs="+", help='array of table headers for general stats')
 parser.add_argument("--select_reads_filenames",nargs="+", help='array of table headers for >100kb stats')
 parser.add_argument("--read_stats_tsv", type=str)
-#parser.add_argument("--bargraph",help='bargraph file name')
+parser.add_argument("--bargraph",help='bargraph file name')
 
 
 args = parser.parse_args()
@@ -29,7 +31,7 @@ select_reads = args.select_reads
 all_reads_file_names = args.all_reads_filenames
 select_reads_file_names = args.select_reads_filenames
 read_stats_tsv = args.read_stats_tsv
-#graph_name = args.bargraph
+graph_name = args.bargraph
 
 
 
@@ -99,18 +101,18 @@ result.columns = ['Total Read Num', 'Total Read Bases', 'Min Read Bases', 'Avg R
 result.to_csv(read_stats_tsv, sep="\t")
 
 
-#print('creating bar graph')
-#df = df.reset_index()
-#bargraph_df1 = df[['index','Coverage']].copy().sort_values(by=['Coverage'],ascending=False)
-#bargraph_df2 = df[['index','N50', 'Coverage']].copy().sort_values(by=['Coverage'],ascending=False)
-#bargraph_df3 = df[['index','sum_len', 'Coverage']].copy().sort_values(by=['Coverage'],ascending=False)
+print('creating bar graph')
+df = result.reset_index()
+bargraph_df1 = df[['index','Coverage']].copy().sort_values(by=['Coverage'],ascending=False)
+bargraph_df2 = df[['index','N50', 'Coverage']].copy().sort_values(by=['Coverage'],ascending=False)
+bargraph_df3 = df[['index','sum_len', 'Coverage']].copy().sort_values(by=['Coverage'],ascending=False)
 
-#bargraph_df2 = bargraph_df2.drop(['Coverage'], axis=1)
-#bargraph_df3 = bargraph_df3.drop(['Coverage'], axis=1)
+bargraph_df2 = bargraph_df2.drop(['Coverage'], axis=1)
+bargraph_df3 = bargraph_df3.drop(['Coverage'], axis=1)
 
-#bargraph_df1 = bargraph_df1.set_index('index')
-#bargraph_df2 = bargraph_df2.set_index('index')
-#bargraph_df3 = bargraph_df3.set_index('index')
+bargraph_df1 = bargraph_df1.set_index('index')
+bargraph_df2 = bargraph_df2.set_index('index')
+bargraph_df3 = bargraph_df3.set_index('index')
 
-#bargraph(bargraph_df1, bargraph_df2, bargraph_df3, graph_name)
+bargraph(bargraph_df1, bargraph_df2, bargraph_df3, graph_name)
 

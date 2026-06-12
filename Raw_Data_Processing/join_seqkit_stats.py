@@ -1,3 +1,5 @@
+#created by Sarah E. Fumagalli
+
 ## -----------------------------------------------------------------------
 ## This script collects each assembly's haplotype stats and combines
 ## them in a single csv.
@@ -22,7 +24,7 @@ parser=argparse.ArgumentParser()
 parser.add_argument("--assemblies", nargs="+", help='list of assemblies')
 parser.add_argument("--filenames", nargs="+", help='array of assembly names')
 parser.add_argument("--tsv_seqkit", type=str, help='tsv file name')
-#parser.add_argument("--graphname", help='bar graph file name')
+parser.add_argument("--graphname", help='bar graph file name')
 
 
 args = parser.parse_args()
@@ -35,7 +37,7 @@ for i in args.assemblies:
 
 file_names = args.filenames
 tsv_name = args.tsv_seqkit
-#graph_name = args.graphname
+graph_name = args.graphname
 
 
 def bargraph(bargraph_df1, bargraph_df2, bargraph_df3, bargraph_df4, bargraph_df5, bargraph_df6, graph_name):
@@ -90,19 +92,19 @@ df_result.set_index('Assembly Haplotype', inplace=True)
 df_result.to_csv(tsv_name + '.tsv', index=True, header=True, sep="\t") 
 
 
-#print('creating bar graph')
+print('creating bar graph')
 #filter df_result for haplotype specific data
-#hap1_df = df_result.filter(like='Hap1', axis=0).reset_index()
-#hap2_df = df_result.filter(like='Hap2', axis=0).reset_index()
+hap1_df = df_result.filter(like='Hap1', axis=0).reset_index()
+hap2_df = df_result.filter(like='Hap2', axis=0).reset_index()
 
 #split dfs by haplotype and data type (columns to display can be easily changed here)
-#bargraph_df1 = hap1_df[['Assembly Haplotype','N50']].set_index(['Assembly Haplotype'])
-#bargraph_df2 = hap1_df[['Assembly Haplotype','num_seqs']].set_index(['Assembly Haplotype'])
-#bargraph_df3 = hap1_df[['Assembly Haplotype','sum_len']].set_index(['Assembly Haplotype'])
-#bargraph_df4 = hap2_df[['Assembly Haplotype','N50']].set_index(['Assembly Haplotype'])
-#bargraph_df5 = hap2_df[['Assembly Haplotype','num_seqs']].set_index(['Assembly Haplotype'])
-#bargraph_df6 = hap2_df[['Assembly Haplotype','sum_len']].set_index(['Assembly Haplotype'])
+bargraph_df1 = hap1_df[['Assembly Haplotype','N50']].set_index(['Assembly Haplotype'])
+bargraph_df2 = hap1_df[['Assembly Haplotype','num_seqs']].set_index(['Assembly Haplotype'])
+bargraph_df3 = hap1_df[['Assembly Haplotype','sum_len']].set_index(['Assembly Haplotype'])
+bargraph_df4 = hap2_df[['Assembly Haplotype','N50']].set_index(['Assembly Haplotype'])
+bargraph_df5 = hap2_df[['Assembly Haplotype','num_seqs']].set_index(['Assembly Haplotype'])
+bargraph_df6 = hap2_df[['Assembly Haplotype','sum_len']].set_index(['Assembly Haplotype'])
 
 #create bargraph
-#bargraph(bargraph_df1, bargraph_df2, bargraph_df3, bargraph_df4, bargraph_df5, bargraph_df6, graph_name)
+bargraph(bargraph_df1, bargraph_df2, bargraph_df3, bargraph_df4, bargraph_df5, bargraph_df6, graph_name)
 
