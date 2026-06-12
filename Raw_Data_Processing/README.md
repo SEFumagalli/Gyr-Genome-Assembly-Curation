@@ -1,4 +1,4 @@
-# Raw Data Processing Scripts
+# Raw Data QC Scripts
 
 ---
 
