@@ -7,8 +7,6 @@
 #SBATCH --ntasks=1
 #SBATCH --mem-per-cpu=10000
 #SBATCH --partition=ceres
-#SBATCH --qos=agil
-#SBATCH --account=cattle_genome_assemblies
 #SBATCH --time=1-00:00:00
 #SBATCH --chdir=/90daydata/ruminant_t2t/Gyr/assembly
 #SBATCH --output=grab_read_stats__%j.std

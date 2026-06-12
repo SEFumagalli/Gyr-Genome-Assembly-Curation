@@ -9,11 +9,9 @@
 #SBATCH --cpus-per-task=24
 #SBATCH --ntasks=1
 #SBATCH --partition=ceres
-#SBATCH --qos=agil
 #SBATCH --mem-per-cpu=3968
 #SBATCH --array=1-301
 #SBATCH --time=2-00:00:00
-#SBATCH --account=cattle_genome_assemblies
 #SBATCH --chdir=/90daydata/ruminant_t2t/Gyr/assembly/verkko_2.2.1_ontEC_hic/8-manualResolution
 #SBATCH --output=align__%A_%a.std
 #SBATCH --error=align__%A_%a.err

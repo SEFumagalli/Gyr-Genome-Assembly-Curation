@@ -8,10 +8,8 @@
 #SBATCH --cpus-per-task=16
 #SBATCH --ntasks=1
 #SBATCH --partition=ceres
-#SBATCH --qos=agil
 #SBATCH --mem-per-cpu=18027
 #SBATCH --time=1-00:00:00
-#SBATCH --account=cattle_genome_assemblies
 #SBATCH --chdir=/90daydata/ruminant_t2t/Gyr/assembly/verkko2.2.1_hifi-duplex_tporec/8-manualResolution/
 #SBATCH --output=GA_index__%j.std
 #SBATCH --error=GA_index__%j.err
