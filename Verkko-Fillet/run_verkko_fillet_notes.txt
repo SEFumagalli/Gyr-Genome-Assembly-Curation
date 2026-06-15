@@ -1,0 +1,224 @@
+#Verkko-fillet notes and fixes from Sarah E. Fumagalli and Kwondo Kim
+
+
+Added "assembly.colors.csv" to the array of files in ~/.conda/envs/verkko-fillet/lib/python3.9/site-packages/verkkofillet/bin/make_verkko_fillet_dir.sh
+After updating verkko-fillet to version 0.1.18, the colors file is listed under files, but is lacking the 's'. "assembly.color.csv" to "assembly.colors.csv"
+
+
+#Sometimes assembly.telormere.bed has duplicate records for one chromosome end. This is because trimmed seqtk telo result is not book-ended with the results without trimming. 
+#So, I changed "cat $PREFIX.tmp | $bedtools sort |$bedtools merge -c 4 -o max > $PREFIX.telomere.bed" --> "cat $PREFIX.tmp | $bedtools sort |$bedtools merge -d 2000 -c 4 -o max > $PREFIX.telomere.bed" at line 55 of "~/.conda/envs/verkko-fillet/lib/python3.9/site-packages/verkkofillet/bin/getT2T.sh"
+
+
+#Error #1 No output file
+#Changed program paths in ~/.conda/envs/verkko-fillet/lib/python3.9/site-packages/verkkofillet/bin/removeRDNA.sh; line 26
+#Change path to /project/cattle_genome_assemblies/packages/micromamba/envs/verkko-v2.2.1/bin/verkko
+#Fixed assembly.telomere.bed --> ./stats/assembly.telomere.bed on line 77 and 83                                                                                                                                                                                  #Error #2 UnboundLocalError: local variable 'rDNA_sequence' referenced before assignment
+#Fixed all "rDNA_sequences" to "rDNA_sequence" in "~/.conda/envs/verkko-fillet/lib/python3.9/site-packages/verkkofillet/tools/_run_rm_rDNA.py
+#sed -i 's/rDNA_sequences/rDNA_seqeuence/g' _run_rm_rDNA.py
+
+
+#Error #1 NameError: name 'working_dir' is not defined
+#Changed wkDir=working_dic --> wkDir="." in ~/.conda/envs/verkko-fillet/lib/python3.9/site-packages/verkkofillet/tools/_chrAssign.py; line 166
+
+#Error #1  ~/.conda/envs/verkko-fillet/lib/python3.9/site-packages/verkkofillet/bin/getChrNames.sh: line 154: /data/korens/devel/sg_sandbox/gfacpp/build/neighborhood: No such file or directory
+#Fixed it by editing the path above to my neighborhood binary. /project/cattle_genome_assemblies/packages/gfacpp/build/neighborhood
+
+#Replaced line 73 in getChrNames.sh /data/korens/devel/verkko-tip/lib/verkko/scripts/inject_coverage.py with  /project/cattle_genome_assemblies/packages/verkko-tip_01112024/src/scripts/inject_coverage.py
+
+#Error #2 /project/cattle_genome_assemblies/packages/micromamba/envs/verkko-fillet/lib/python3.9/site-packages/verkkofillet/bin/getChrNames.sh: assembly.homopolymer-compressed.chr.csv empty pandas df
+
+#Error #3 translation files may be missing chromosomes
+#Fixed by adding new variables 'datatype=args.phase_datatype' and 'chr_num=args.exp_chr_num' to run_verkko_fillet.py when calling ~/.conda/envs/verkko-fillet/lib/python3.9/site-packages/verkkofillet/tools/_chrAssign.py via 'vf.tl.chrAssign(obj, ref="converted_reference", datatype=args.phase_datatype, chr_num=args.exp_chr_num)'
+
+#Variables 'datatype="hic"' and 'chr_num=31' were added to the function chrAssign in ~/.conda/envs/verkko-fillet/lib/python3.9/site-packages/verkkofillet/tools/_chrAssign.py
+
+#In the construction of the shell command, objects '{shlex.quote(datatype)}' and '{shlex.quote(str(chr_num))}' were added to cmd on line 106
+
+#In ~/.conda/envs/verkko-fillet/lib/python3.9/site-packages/verkkofillet/bin/getChrNames.sh
+#Add these lines to the top
+'''
+datatype="hic"
+if [[ "$#" -ge 5 ]]; then
+   echo "Datatype input: $5"
+   datatype=$5
+fi
+chr_num=31
+if [[ "$#" -ge 6 ]]; then
+   echo "Expected number of chromosomes: $6"
+   chr_num=$6
+fi
+
+id_thr=95
+if [[ "$#" -ge 7 ]]; then
+   echo "Idenitity threshold: $7"
+   id_thr=$7
+fi
+'''
+
+#Change all mashmap --pi flags from 95 to $7
+
+#Move lines pertaining to the creation of translation_hap1 and translation_hap2 above the creation of assembly.homopolymer-compressed.chr.csv. Move lines listed below.
+'''
+minLen=1000000
+cat assembly.mashmap.out |awk '{for (i = 1; i<=NF; i++) { if (match($i, "id:f:")) IDY=substr($i, 6, length($i)); } print $0"\t"IDY*100}' |grep "$label1" |grep $g |awk -v M=$minLen -v IDY=$idy '{if ($NF > IDY && $4-$3 > M) print $1"\t"$6"\t"$2"\t"$7}' |sort |uniq > translation_hap1
+cat assembly.mashmap.out |awk '{for (i = 1; i<=NF; i++) { if (match($i, "id:f:")) IDY=substr($i, 6, length($i)); } print $0"\t"IDY*100}' |grep "$label2" |grep $g |awk -v M=$minLen -v IDY=$idy '{if ($NF > IDY && $4-$3 > M) print $1"\t"$6"\t"$2"\t"$7}' |sort |uniq > translation_hap2
+'''
+
+
+#Add the code below under the translation code to double check the chromosomes found
+'''
+if [ -f "translation_hap1_original" ]; then 
+	echo "translation_hap*_original files exist."
+else
+	cp translation_hap1 translation_hap1_original
+	cp translation_hap2 translation_hap2_original
+fi
+
+
+sort -k2,2 translation_hap1 > translation_hap1_sorted
+sort -k2,2 translation_hap2 > translation_hap2_sorted
+
+if [ "trio_hic" = $5 ]; then
+    echo "Using trio and hic data"
+    sort -k11,11nr assembly.mashmap.out | sort -k6,6 -k8,8n | grep "haplotype1" > mashmap_hap1.out
+    sort -k11,11nr assembly.mashmap.out | sort -k6,6 -k8,8n | grep "haplotype2" > mashmap_hap2.out
+
+    sort -k11,11nr assembly.mashmap.out | sort -k6,6 -k8,8n | grep "dam" > mashmap_dam.out
+    sort -k11,11nr assembly.mashmap.out | sort -k6,6 -k8,8n | grep "sire" > mashmap_sire.out
+
+    python3 /project/cattle_genome_assemblies/packages/.conda/envs/verkko-fillet/lib/python3.9/site-packages/verkkofillet/tools/chromo_assessment.py --mashmap mashmap_sire.out mashmap_dam.out mashmap_hap1.out mashmap_hap2.out --translation translation_hap1_sorted translation_hap2_sorted --num_chromosomes $6
+
+    rm mashmap_hap1.out
+    rm mashmap_hap2.out
+    rm mashmap_dam.out
+    rm mashmap_sire.out
+fi
+if [ "trio" = $5 ]; then
+    echo "Using trio data only"
+    sort -k11,11nr assembly.mashmap.out | sort -k6,6 -k8,8n | grep "dam" > mashmap_dam.out
+    sort -k11,11nr assembly.mashmap.out | sort -k6,6 -k8,8n | grep "sire" > mashmap_sire.out
+
+    python3 /project/cattle_genome_assemblies/packages/.conda/envs/verkko-fillet/lib/python3.9/site-packages/verkkofillet/tools/chromo_assessment.py --mashmap mashmap_sire.out mashmap_dam.out --translation translation_hap1_sorted translation_hap2_sorted --num_chromosomes $6
+
+    rm mashmap_dam.out
+    rm mashmap_sire.out
+
+fi
+
+if [ "hic" = $5 ]; then
+    echo "Using hic data only"
+    sort -k11,11nr assembly.mashmap.out | sort -k6,6 -k8,8n | grep "haplotype1" > mashmap_hap1.out
+    sort -k11,11nr assembly.mashmap.out | sort -k6,6 -k8,8n | grep "haplotype2" > mashmap_hap2.out
+
+    python3 /project/cattle_genome_assemblies/packages/.conda/envs/verkko-fillet/lib/python3.9/site-packages/verkkofillet/tools/chromo_assessment.py --mashmap mashmap_hap1.out mashmap_hap2.out --translation translation_hap1_sorted translation_hap2_sorted --num_chromosomes $6
+
+    rm mashmap_hap1.out
+    rm mashmap_hap2.out
+
+fi
+
+rm translation_hap1_sorted
+rm translation_hap2_sorted
+mv translation_hap1.csv translation_hap1
+mv translation_hap2.csv translation_hap2                                                                                                                                                                         
+'''
+
+
+#Next in getChrNames.sh file should be the code to create assembly.homopolymer-compressed.chr.csv
+#Replace $utigs_mashmap with assembly.mashmap.out on lines 216 and 218
+#Remove if loop
+#Block out lines 226, 227, and 229
+
+
+#Next, add code below to convert hapmer names into utig names
+'''
+#convert hapmer names into utig names
+COUNTER=0
+for i in $(cat "assembly.homopolymer-compressed.chr.csv"); do
+    #check if past first row with two columns
+    if [[ "$COUNTER" -gt 1 ]]; then
+        #check for unassigned
+        if [[ $i == *"unassigned"* ]]; then
+            echo "$COUNTER $i skipping unassigned and removing from file"
+            grep -v $i assembly.homopolymer-compressed.chr.csv > tmp.chr && mv tmp.chr assembly.homopolymer-compressed.chr.csv
+        else
+            #check for even numbers indicating the first column
+            if [ `expr $COUNTER % 2` == 0 ]; then
+                #check for haplotype vs sire/dam
+                if [[ $i == *"haplotype"* ]]; then
+                    newstring=$(grep $i assembly.scfmap | cut -f3 -d "_")
+                else
+                    newstring=$(grep $i assembly.scfmap | cut -f5 -d "_")
+                fi
+                #check if utig string is empty
+                if [[ $newstring == *"unassigned"* ]]; then
+                    echo "$COUNTER $i no corresponding utig name"
+                    grep -v $newstring assembly.homopolymer-compressed.chr.csv > tmp.chr && mv tmp.chr assembly.homopolymer-compressed.chr.csv
+                else
+                    echo "$COUNTER $i $newstring"
+                    sed -i "s/$i/${newstring}/g" assembly.homopolymer-compressed.chr.csv
+                fi
+            fi
+        fi
+    fi
+    COUNTER=$(( COUNTER + 1 ))
+done
+'''
+
+
+
+
+# To fix the prinout of this command, I edited "~/.conda/envs/verkko-fillet/lib/python3.9/site-packages/verkkofillet/preprocessing/_read_chr.py"
+# at line 19: translation_hap1['hap'] = translation_hap1['contig'].str.split('_', expand=True)[0] --> translation_hap1['hap'] = translation_hap1['contig'].str.split('-', expand=True)[0]
+# at line 24: translation_hap2['hap'] = translation_hap2['contig'].str.split('_', expand=True)[0] --> translation_hap2['hap'] = translation_hap2['contig'].str.split('-', expand=True)[0]
+# added "how='left'" at line 98
+# stat_db = pd.merge(pd.merge(
+#        pd.merge(assembly_t2t,translation,on="contig", how = 'outer'),
+#        chrom_map, on='ref_chr', how = 'left'), chr_completeness_max, on=['ref_chr','hap'], how = 'outer')
+
+
+
+
+
+Error:
+Traceback (most recent call last):
+  File "/90daydata/gaur_genome_assembly/Water_Buffalo/assembly/run_verkko_fillet.py", line 118, in <module>
+    obj = vf.pp.readChr(obj, map_file, sire = "sire", dam = "dam")
+  File "~/.conda/envs/verkko-fillet/lib/python3.9/site-packages/verkkofillet/preprocessing/_read_chr.py", line 65, in readChr
+    chrom_map.columns = ['old_chr','ref_chr']
+  File "/home/sarah.fumagalli/.local/lib/python3.9/site-packages/pandas/core/generic.py", line 6313, in __setattr__
+    return object.__setattr__(self, name, value)
+  File "properties.pyx", line 69, in pandas._libs.properties.AxisProperty.__set__
+  File "/home/sarah.fumagalli/.local/lib/python3.9/site-packages/pandas/core/generic.py", line 814, in _set_axis
+    self._mgr.set_axis(axis, labels)
+  File "/home/sarah.fumagalli/.local/lib/python3.9/site-packages/pandas/core/internals/managers.py", line 238, in set_axis
+    self._validate_set_axis(axis, new_labels)
+  File "/home/sarah.fumagalli/.local/lib/python3.9/site-packages/pandas/core/internals/base.py", line 98, in _validate_set_axis
+    raise ValueError(
+ValueError: Length mismatch: Expected axis has 1 elements, new values have 2 elements
+
+Fix: added chrom_map.reset_index(inplace=True) to line 64
+
+
+
+
+
+
+
+
+
+
+#Error #1 no output
+#I fixed it by adding VGP_PIPELINE="~/.conda/envs/verkko-fillet/lib/python3.9/site-packages/verkkofillet/bin/vgp-assembly" at the top of ~/.conda/envs/verkko-fillet/lib/python3.9/site-packages/verkkofillet/bin/vgp-assembly/telomere/telomere_analysis.sh
+
+#Error #2 ~/.conda/envs/verkko-fillet/lib/python3.9/site-packages/verkkofillet/bin/vgp-assembly/telomere/find_telomere.sh: line 20: /telomere/find_telomere: No such file or directory
+#I added VGP_PIPELINE="~/.conda/envs/verkko-fillet/lib/python3.9/site-packages/verkkofillet/bin/vgp-assembly" at the top of ~/.conda/envs/verkko-fillet/lib/python3.9/site-packages/verkkofillet/bin/vgp-assembly/telomere/find_telomere.sh
+
+#Error #3 awk: fatal: cannot open file `assembly_1' for reading: No such file or directory
+#This looks an issue coming from the incorrect path of translation_hap1 and translation_hap2. 
+#I added "csv = os.path.abspath(os.path.join("chromosome_assignment", "translation_hap*"))" at the line 43 of ~/.conda/envs/verkko-fillet/lib/python3.9/site-packages/verkkofillet/tools/_detect_internal_telomere.py and changed "cmd = f"sh {shlex.quote(script)} {name} 0.5 50000 {asm} ./chromosome_assignment/translation_hap*" to "cmd = f"sh {shlex.quote(script)} {name} 0.5 50000 {asm} {csv}"" at the line 67
+
+#I also edited $csv to $csv1 and $csv2 at line 86 in ~/.conda/envs/verkko-fillet/lib/python3.9/site-packages/verkkofillet/bin/vgp-assembly/telomere/telomere_analysis.sh, I changed "awk -F "," '{print $1}' $csv  >> $genome.assigned" to "awk '{print $1}' $csv1 >> $genome.assigned" and "awk '{print $1}' $csv2 >> $genome.assigned"
+
+
+
