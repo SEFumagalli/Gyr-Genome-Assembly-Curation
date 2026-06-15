@@ -17,6 +17,8 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
 sys.path.append( '/project/cattle_genome_assemblies/config_files_scripts/verkko-fillet/' )
+#created by Sarah E. Fumagalli
+
 import translation_merge_table_plot
 import json
 
