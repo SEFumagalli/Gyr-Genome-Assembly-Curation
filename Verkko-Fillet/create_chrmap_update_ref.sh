@@ -159,7 +159,8 @@ reference=$(basename ${reference_path})
 #grab file names
 sequence_report=$(basename ${report_path})
 reference=$(basename ${reference_path})
-
+echo $reference
+echo $sequence_report
 
 #check reference file 
 if [[ $reference =~ \.gz$ ]]; then
@@ -173,9 +174,13 @@ fi
 
 
 #create list of ids from genomic assembly
-echo "creating assembly fai"
-module load seqkit
-seqkit faidx $reference
+if [ -e "${reference}.fai" ]; then
+        echo "found assembly.fna.fai"
+else
+        echo "creating assembly fai"
+        module load seqkit
+        seqkit faidx $reference
+fi
 reference_ids="${reference}.fai"
 
 
@@ -188,7 +193,7 @@ if [ -z "$sequence_report" ]; then
 else	
 	#create chromosome.map using sequence_report.tsv and reference.fna.fai
 	echo "using sequence_report.tsv to create chromosome.map"
-	python3 /project/cattle_genome_assemblies/config_files_scripts/verkko-fillet/create_chromosome_map.py --reference_ids $reference_ids --sequence_report $sequence_report
+	python3 create_chromosome_map.py --reference_ids $reference_ids --sequence_report $sequence_report
 	map_file='chromosome.map'
 fi
 
@@ -199,7 +204,7 @@ if [ -z "$map_file" ]; then
 else
 	#update reference.fna with chromosome names
 	echo "using map_file to updated reference.fna with chromosome names"
-	python3 /project/cattle_genome_assemblies/config_files_scripts/verkko-fillet/add_chr_reference.py --chromosome_map $map_file --reference $reference
+	python3 add_chr_reference.py --chromosome_map $map_file --reference $reference
 fi
 
 #update reference.fna.fai with chromosome names
@@ -209,6 +214,7 @@ ext="${reference##*.}"
 updated_reference="${base}.chr.${ext}"
 echo "$updated_reference"
 
+module load seqkit
 seqkit faidx $updated_reference	
 
 date

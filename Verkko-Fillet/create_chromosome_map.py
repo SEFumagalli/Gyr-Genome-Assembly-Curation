@@ -65,9 +65,18 @@ def chromosome_map(ref_data, seq_report):
         seq_report_df = pd.read_csv(seq_report, sep="\t")
     else:
         print('using assembly_report.txt')
-        seq_report_df = pd.read_csv(seq_report, sep="\t", skiprows=31, header=None)
+        #check file for number of rows that need to be ignored
+        num_rows = 0
+        with open(seq_report, 'r') as file:
+            for line in file:
+                if line.startswith('# Sequence-Name'):
+                    num_rows += 1
+                    break
+                else:
+                    num_rows += 1
+        print('number of rows skipping in sequence_report=',num_rows)
+        seq_report_df = pd.read_csv(seq_report, sep="\t", skiprows=num_rows, header=None)
         seq_report_df.columns = ['Sequence-Name', 'Role', 'Chromosome name', 'Assigned-Molecule-Location/Type', 'GenBank seq accession', 'Relationship', 'RefSeq seq accession', 'Assembly-Unit', 'Sequence-Length', 'UCSC-style-name']
-
 
     #check for RefSeq/GenBank column name
     if seq_report_df['RefSeq seq accession'].eq('na').all():

@@ -100,13 +100,6 @@ vf.tl.getT2T(obj)
 vf.tl.rmrDNA(obj, rDNA_sequence=args.rDNA_fasta)
 
 
-#fofn = "/90daydata/ruminant_t2t/Gyr/assembly/illumina/F1"
-#kmerPrefix="child_illumina"
-#vf.tl.mkMeryl(obj, fofn, prefix=kmerPrefix)
-#vf.tl.calQV(obj, prefix=kmerPrefix)
-
-
-
 # 5.Chromosome assignment
 if os.path.isfile(main_dir + "chromosome.map"):
     print('chromosome.map exists')
@@ -214,11 +207,7 @@ df_summary.to_csv('chromosome_assignment/translation_merged_summary.tsv', sep='\
 
 if args.phase_datatype != "hic":
     obj = vf.pp.readChr(obj, map_file, sire = "sire", dam = "dam")
-
-# vf.tl.detect_internal_telomere(obj)
-#intra_telo, tel =  vf.pp.find_intra_telo(obj)
-#print(intra_telo)
-#print(tel)
+    
 
 if args.gaps == 'True':
 
