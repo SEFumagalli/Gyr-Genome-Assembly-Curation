@@ -1,16 +1,14 @@
-# Verkko-Fillet - using Bash and python instead of Jupyter Lab
+# Verkko-Fillet - using Bash and Python instead of Jupyter Lab
 
 ---
 
-
-Find Verkko-Fillet here **[Verkko-Fillet](https://github.com/jjuhyunkim/verkko-fillet/tree/main)**
 
 All scripts are formatted for use on the Ceres cluster at the USDA.
 
 
 1. Add conda symlink to home directory 
 	
-	ln -s /project/cattle_genome_assemblies/packages/.conda .
+        ln -s /project/cattle_genome_assemblies/packages/.conda .
 
 
 2. Download **[Verkko-Fillet](https://github.com/jjuhyunkim/verkko-fillet/tree/main)**
@@ -33,7 +31,7 @@ All scripts are formatted for use on the Ceres cluster at the USDA.
 
 4. Locate main directory (directory of verkko assemblies)
 	
-	cd main_directory
+        	cd main_directory
 
 
 5. Create chromosome map file and update reference.fna
@@ -54,7 +52,6 @@ All scripts are formatted for use on the Ceres cluster at the USDA.
             - reference_assembly.chr.fna - includes chromosome names
             - reference_assembly.chr.fna.fai
             - chromosome.map - if not provided
-
 
 
         	To create a file called manual_chromosome.map located in your main_directory
@@ -97,10 +94,9 @@ All scripts are formatted for use on the Ceres cluster at the USDA.
                 	NC_082638.1     chr_Y 
                 	
 
-
-            	-Alternate method: 
-                	- This script can also be used if your reference.fasta was produced from running hifiasm or for whatever reason have an extra column of information to map
-                	- !! name this file something OTHER THAN chromosome.map - it will be rewritten otherwise
+            	- Alternate method: 
+                - This script can also be used if your reference.fasta was produced from running hifiasm or for whatever reason have an extra column of information to map
+                - !! name this file something OTHER THAN chromosome.map - it will be rewritten otherwise
                     - this file will have no header, no index, just three columns: 1) ID, 2) RefSeq identifier, & 3) chromosome number
                     - make note of the formatting in the second column - do not forget to use '_'
                     
@@ -143,25 +139,26 @@ All scripts are formatted for use on the Ceres cluster at the USDA.
 	
 	**run_verkko_fillet.sh**
 	
-        	Make the verkko-fillet environment is NOT activated before running this shell (you will see a pandas error)
+    Make the verkko-fillet environment is NOT activated before running this shell (you will see a pandas error)
 
-        Flags:
+    Flags:
         
-        		--verkko_directory	       path to verkko directory -- example: /90daydata/ruminant_t2t/Gyr/assembly/verkko2.2.1_hifi-duplex_tporec/
-        		--main_directory 	       path to general assembly directory -- example: /90daydata/ruminant_t2t/Gyr/assembly/
-        		--rDNA_fasta 		       path to rDNA reference -- example: /90daydata/ruminant_t2t/Gyr/assembly/Cattle_rDNA.fasta
-        		--ref_fasta 		           path to reference fasta -- example: /90daydata/ruminant_t2t/Gyr/assembly/ARS-UCD2.0_chr.fasta
-        		--phase_datatype 	       type of phase data: trio_hic (Illumina Trio & Hi-C), hic (Hi-C only), or trio (Illumina Trio only) -- default: hic
-            --exp_chr_num 		       expected number of chromosomes, including sex chromosomes (better to overshoot) -- default: 31
-            --gaps 			           identify gaps -- need to run GraphAligner scripts before running (more details below) -- usually activated on a second run -- True or False
-        		--mashmap_id_threshold 	   mashmap id threshold -- default: 95
-        		--new_row		           add row/s to translation_hap* files via dictionary named 'dict' -- only needed when rerunning verkko-fillet and altering run_verkko_fillet.py
-            					               Example (formatting is important): 
-            					               '{"0": ["sire_compressed.k31.hapmer-0000251"], "1": ["NC_057420.1_chr_Y"], "2": ["39262963"], "3": ["7618728"]}'
-        					
-                                			   For multiple rows make lists: 
+        --verkko_directory	       path to verkko directory -- example: /90daydata/ruminant_t2t/Gyr/assembly/verkko2.2.1_hifi-duplex_tporec/
+        --main_directory 	       path to general assembly directory -- example: /90daydata/ruminant_t2t/Gyr/assembly/
+        --rDNA_fasta 		       path to rDNA reference -- example: /90daydata/ruminant_t2t/Gyr/assembly/Cattle_rDNA.fasta
+        --ref_fasta 		           path to reference fasta -- example: /90daydata/ruminant_t2t/Gyr/assembly/ARS-UCD2.0_chr.fasta
+        --phase_datatype 	       type of phase data: trio_hic (Illumina Trio & Hi-C), hic (Hi-C only), or trio (Illumina Trio only) -- default: hic
+        --exp_chr_num 		       expected number of chromosomes, including sex chromosomes (better to overshoot) -- default: 31
+        --gaps 			           identify gaps -- need to run GraphAligner scripts before running (more details below) -- usually activated on a second run -- True or False
+        --mashmap_id_threshold 	   mashmap id threshold -- default: 95
+        --new_row		           add row/s to translation_hap* files via dictionary named 'dict' -- only needed when rerunning verkko-fillet and altering run_verkko_fillet.py
+                                        Example (formatting is important): 
+                                            
+                                            '{"0": ["sire_compressed.k31.hapmer-0000251"], "1": ["NC_057420.1_chr_Y"], "2": ["39262963"], "3": ["7618728"]}'
+                        					
+                        					For multiple rows make lists: 
                                         		
-                                        	   '{"0": "[sire_compressed.k31.hapmer-0000251", "dam_compressed.k31.hapmer-0000061"], "1": ["NC_057420.1_chr_Y", "NC_086750.1_chr_28"], "2": ["39262963", "3489556"], "3": ["7618728", "45672686"]}'				
+                                        		'{"0": "[sire_compressed.k31.hapmer-0000251", "dam_compressed.k31.hapmer-0000061"], "1": ["NC_057420.1_chr_Y", "NC_086750.1_chr_28"], "2": ["39262963", "3489556"], "3": ["7618728", "45672686"]}'				
         	
 
 
@@ -209,10 +206,10 @@ All scripts are formatted for use on the Ceres cluster at the USDA.
     So Verkko-Fillet does not overwrite these changes, modify **run_verkko_fillet.py**
 
         - Hash out:
-                vf.tl.getT2T(obj)
-                vf.tl.rmrDNA(obj, rDNA_sequence=args.rDNA_fasta)
-                vf.tl.convertRefName(args.ref_fasta, map_file, out_fasta="converted_reference")
-                vf.tl.chrAssign(obj = obj, ref = "converted_reference", datatype=args.phase_datatype, chr_num=args.exp_chr_num, id_thr=args.mashmap_id_threshold)
+            vf.tl.getT2T(obj)
+            vf.tl.rmrDNA(obj, rDNA_sequence=args.rDNA_fasta)
+            vf.tl.convertRefName(args.ref_fasta, map_file, out_fasta="converted_reference")
+            vf.tl.chrAssign(obj = obj, ref = "converted_reference", datatype=args.phase_datatype, chr_num=args.exp_chr_num, id_thr=args.mashmap_id_threshold)
                 
 
     After rerunning, check .std and verkko_fillet_directory/chromosome_assignment/translation_merged.tsv for corrections.
@@ -294,7 +291,6 @@ All scripts are formatted for use on the Ceres cluster at the USDA.
                 	- change 'SBATCH --chdir=/verkko2.2.1_hifi-duplex_tporec/8-manualResolution/' to your verkko directory
                 	- change '#SBATCH --array=1-198' to match the number of aligned files in the split folder
     
-        
             	-after running both Bash files, concatenate all GAF files (file name is important)
                 	
                 	cat ont*.gaf > verkko.graphAlign_allONT.gaf
@@ -312,9 +308,9 @@ All scripts are formatted for use on the Ceres cluster at the USDA.
         	- mark --gaps flag as True
 
         	- In-house outputs (verkko_fillet_directory/graphAlignment/):	
-            	
-            	- verkko_initial_gaps.csv 		    table with detailed gap information
-			- verkko_edited_initial_gaps.csv 	table with gapId and gaps - easy copy for node_list_input
+            
+            - verkko_initial_gaps.csv 		    table with detailed gap information
+            - verkko_edited_initial_gaps.csv 	table with gapId and gaps - easy copy for node_list_input
 
 
 
