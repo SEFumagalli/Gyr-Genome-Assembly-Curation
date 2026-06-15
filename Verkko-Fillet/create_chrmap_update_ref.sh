@@ -1,16 +1,15 @@
+#!/bin/bash -l
+
 #created by Sarah E. Fumagalli
 
 ## This script creates the chromosome.map file needed to run verkko-fillet
 ## This script calls create_chromosome_map.py
 
-#!/bin/bash -l
 
 #SBATCH --job-name=chromosome_map
 #SBATCH --cpus-per-task=1
 #SBATCH --ntasks=1
 #SBATCH --mem-per-cpu=3000
-#SBATCH --partition=short
-#SBATCH --account=cattle_genome_assemblies
 #SBATCH --chdir=/project/ruminant_t2t/existing_NCBI_references/Okapi
 #SBATCH --output=chromosome_map__%j.std
 #SBATCH --error=chromosome_map__%j.err

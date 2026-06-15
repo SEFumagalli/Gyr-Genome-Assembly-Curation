@@ -1,3 +1,5 @@
+#!/bin/bash -l
+
 #created by Sarah E. Fumagalli
 
 ## This script is a modified version of Verkko-Fillet (https://github.com/marbl/verkko-fillet/tree/main)
@@ -8,16 +10,12 @@
 ## Please see README in the verkko-fillet folder for specific steps and modifications to verkko-fillet scripts
 
 
-#!/bin/bash -l
-
 #SBATCH --job-name=verkko_fillet
 #SBATCH --cpus-per-task=8
 #SBATCH --ntasks=1
 #SBATCH --mem-per-cpu=8027
 #SBATCH --partition=ceres
 #SBATCH --time=2-00:00:00
-#SBATCH --qos=agil
-#SBATCH --account=cattle_genome_assemblies
 #SBATCH --chdir=/90daydata/ruminant_t2t/Gyr/assembly
 #SBATCH --output=vf__%j.std
 #SBATCH --error=vf__%j.err
@@ -34,7 +32,7 @@ source activate verkko-fillet
 
 
 #create fai file for assembly.rDNA.fasta
-rDNA="/90daydata/ruminant_t2t/Gyr/assembly/verkko2.2.1_hifi-duplex_tporec/assembly.cattle_rDNA.fasta"
+rDNA="/verkko2.2.1_hifi-duplex_tporec/assembly.cattle_rDNA.fasta"
 rDNA_fai="${rDNA}.fai"
 #echo $rDNA_fai
 if [ ! -f "$rDNA_fai" ]; then
@@ -50,13 +48,13 @@ fi
 
 #dict='{"0": ["sire_compressed.k31.hapmer-0000251"], "1": ["NC_057420.1_chr_Y"], "2": ["39262963"], "3": ["7618728"]}'
 
-python3 /project/cattle_genome_assemblies/config_files_scripts/verkko-fillet/run_verkko_fillet.py \
+python3 run_verkko_fillet.py \
 	--verkko_directory /90daydata/ruminant_t2t/Gyr/assembly/verkko2.2.1_hifi-duplex_tporec/ \
 	--main_directory /90daydata/ruminant_t2t/Gyr/assembly/ \
-	--rDNA_fasta /90daydata/ruminant_t2t/Gyr/assembly/Cattle_rDNA.fasta \
-	--ref_fasta /90daydata/ruminant_t2t/Gyr/assembly/ARS-UCD2.0_chr.fasta \
+	--rDNA_fasta Cattle_rDNA.fasta \
+	--ref_fasta ARS-UCD2.0_chr.fasta \
  	--phase_datatype trio_hic \
-        --exp_chr_num 31 \
+    --exp_chr_num 31 \
 	--gaps False \
 	--mashmap_id_threshold 95 \
 	--rDNA_fasta_fai $rDNA_fai
