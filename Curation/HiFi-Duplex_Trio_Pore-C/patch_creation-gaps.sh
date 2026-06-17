@@ -315,6 +315,8 @@ verkko_fillet_dir="/assembly/verkko2.2.1_hifi-duplex_tporec_verkko_fillet"
 8. Insert patches into paths and update files for final verkko run
 
     patch_2_path.sh
+    
+        Follow formatting directions in Bash script closely.
 
         python3 update_patch_2_path.py --utig4s /8-hicPipeline/rukki.paths.tsv --patches /8-manualResolution/gaps/final_gap_patches.tsv    
 

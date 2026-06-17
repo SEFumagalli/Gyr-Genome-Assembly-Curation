@@ -286,6 +286,9 @@ mkdir $patch_dir && cd $patch_dir
         
         	cp 5-untip/unitig-unrolled-unitig-unrolled-popped-unitig-normal-connected-tip.gfa .
         
+        
+        See Le Ackersons github for the py file download https://github.com/LeeAckersonIV/genome-asm/tree/main/helper-scripts
+        
         	rDNA-morph2patch.sh
         	
         
