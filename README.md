@@ -73,29 +73,29 @@ This repository contains **documentation**, **tutorials**, and **scripts** for p
             - PacBio Sequel
             - TrioCanu v. 2.0
                 	
-      -*Bos taurus*
-         - **[ARS-UCD2.0](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_002263795.3/)** 
-          - Hereford
-          - diploid/haploid 
-          - male 11 yrs
-          - Dominette left lung
-          - PacBio; Illumina NextSeq 500; Illumina HiSeq; Illumina GAII
-          - Falcon v. FEB-2016 
+        -*Bos taurus*
+        - **[ARS-UCD2.0](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_002263795.3/)** 
+            - Hereford
+            - diploid/haploid 
+            - male 11 yrs
+            - Dominette left lung
+            - PacBio; Illumina NextSeq 500; Illumina HiSeq; Illumina GAII
+            - Falcon v. FEB-2016 
     	
-      - *Bos indicus* x *Bos taurus*
+        - *Bos indicus* x *Bos taurus*
         - **[UOA_Angus_1](https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_003369685.2/)**
-          - Angus x Brahman F1 hybrid
-          - haploid pseudohaplotype (principal haplotype)
-          - male fetus
-          - PacBio RSII; PacBio Sequel; Illumina NextSeq
-          - TrioCanu v. 1.6
+            - Angus x Brahman F1 hybrid
+            - haploid pseudohaplotype (principal haplotype)
+            - male fetus
+            - PacBio RSII; PacBio Sequel; Illumina NextSeq
+            - TrioCanu v. 1.6
     
         - **[UOA_Brahman_1](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_003369695.1/)**
-          - Angus x Brahman F1 hybrid
-          - haploid pseudohaplotype (alternate haplotype)
-          - male fetus
-          - PacBio Sequel; PacBio RSII; Illumina NextSeq
-          - TrioCanu v. 1.6
+            - Angus x Brahman F1 hybrid
+            - haploid pseudohaplotype (alternate haplotype)
+            - male fetus
+            - PacBio Sequel; PacBio RSII; Illumina NextSeq
+            - TrioCanu v. 1.6
 
 
 7. `Example Files`
