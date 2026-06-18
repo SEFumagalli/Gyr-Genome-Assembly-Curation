@@ -84,7 +84,7 @@ This repository contains **documentation**, **tutorials**, and **scripts** for p
     - Assembly statistics
     - T2T contigs/scaffold bargraph
     
-- Verkko
+- `Verkko`
     - Example of general Verkko launch
     - Example of overlay (multiple phasing data types) Verkko launch
 
