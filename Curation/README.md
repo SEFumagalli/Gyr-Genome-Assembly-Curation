@@ -9,11 +9,13 @@
         
         - Idenify gaps using Verkko and Verkko-Fillet output files
         
-        - Visualize gaps using **[Bandage](https://github.com/asl/BandageNG)**
+        - Visualize gaps using 
+        
+        **[Bandage](https://github.com/asl/BandageNG)**
         
             - asm-path-translate-printout-Bandage.py
             
-        - Use  **[Trivial Tangle Traverser](https://github.com/marbl/TTT)** for complex tangles
+        - Use **[Trivial Tangle Traverser](https://github.com/marbl/TTT)** for complex tangles
         
             - tangle_traverser.sh
             
