@@ -11,7 +11,7 @@
     
     - Finds assembly gaps with **[gfastats](https://github.com/vgl-hub/gfastats)** per haplotype and full assembly.
     
-    - Finds alignments with reference for both haplotypes using --[Minimap2](https://github.com/lh3/minimap2)**
+    - Finds alignments with reference for both haplotypes using **[Minimap2](https://github.com/lh3/minimap2)**
     
     - Combines all assemblies listed into single table. 
 

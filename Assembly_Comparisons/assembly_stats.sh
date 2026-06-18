@@ -1,15 +1,13 @@
-# created by Sarah E. Fumagalli
-
 #!/bin/bash -l
+
+# created by Sarah E. Fumagalli
 
 #SBATCH --job-name=assembly_stats
 #SBATCH --cpus-per-task=96
 #SBATCH --ntasks=1
 #SBATCH --mem-per-cpu=3968
 #SBATCH --partition=ceres
-#SBATCH --qos=agil
 #SBATCH --time=3-00:00:00
-#SBATCH --account=cattle_genome_assemblies
 #SBATCH --chdir=/90daydata/ruminant_t2t/Gyr/assembly/
 #SBATCH --output=assembly_stats__%j.std
 #SBATCH --error=assembly_stats__%j.err
