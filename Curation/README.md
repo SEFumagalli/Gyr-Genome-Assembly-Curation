@@ -25,16 +25,16 @@
             
         The last two scripts were originally built by **[Lee Ackerson](https://github.com/LeeAckersonIV/genome-asm/tree/main/helper-scripts)**
             
-     -Insert patches into paths and prepare files for Verkko relaunch.
+     - Insert patches into paths and prepare files for Verkko relaunch.
         
         patch_2_path.sh
         update_patch_2_path.py
         get_utig1_from_utig4.py
         addPatch.pl
                 
-    get_utig1_from_utig4.py can be found in the **[Verkko](https://github.com/marbl/verkko/tree/master/src/scripts)** github
+        get_utig1_from_utig4.py can be found in the **[Verkko](https://github.com/marbl/verkko/tree/master/src/scripts)** github
     
-    addPatch.pl (Wen Huang) can be found on **[Lee Ackerson](https://github.com/LeeAckersonIV/genome-asm/tree/main/helper-scripts)** github
+        addPatch.pl (Wen Huang) can be found on **[Lee Ackerson](https://github.com/LeeAckersonIV/genome-asm/tree/main/helper-scripts)** github
     
     
     
@@ -42,17 +42,17 @@
 
     Step-by-step process detailed in **patch_creation-telo.sh**
     
-    Idenify telomere for each chromosome using Verkko and Verkko-Fillet output files.
+    - Idenify telomere for each chromosome using Verkko and Verkko-Fillet output files.
     
-    Visualize telomere using **[Bandage](https://github.com/asl/BandageNG)** 
+    - Visualize telomere using **[Bandage](https://github.com/asl/BandageNG)** 
     
         asm-path-translate-printout-Bandage.py
         
-    Align with **[Minimap2](https://github.com/lh3/minimap2)** to find overlapping segment.
+    - Align with **[Minimap2](https://github.com/lh3/minimap2)** to find overlapping segment.
     
-    Align chromosome and telomere to segment.
+    - Align chromosome and telomere to segment.
     
-    Convert to GAF.
+    - Convert to GAF.
     
     
 
@@ -60,25 +60,25 @@
 
     Step-by-step process detailed in **patch_creation-rDNA.sh**
     
-    Create consensus rDNA sequence with **[Ribotin](https://github.com/maickrau/ribotin)**
+    - Create consensus rDNA sequence with **[Ribotin](https://github.com/maickrau/ribotin)**
     
-    Identify locations of rDNA in assembly with **[RepeatMasker](https://github.com/Dfam-consortium/RepeatMasker/)**
+    - Identify locations of rDNA in assembly with **[RepeatMasker](https://github.com/Dfam-consortium/RepeatMasker/)**
     
-    Determine median copy number with **[CONKORD](https://github.com/borcherm/CONKORD)**
+    - Determine median copy number with **[CONKORD](https://github.com/borcherm/CONKORD)**
     
-    Convert rDNA morph to patch
+    - Convert rDNA morph to patch
     
         rDNA-morph2patch.sh
         
-    Script originally built by **[Lee Ackerson](https://github.com/LeeAckersonIV/genome-asm/tree/main/helper-scripts)**
+        Script originally built by **[Lee Ackerson](https://github.com/LeeAckersonIV/genome-asm/tree/main/helper-scripts)**
         
-    Identify flanking utigs (chromosome and telomere)
+    - Identify flanking utigs (chromosome and telomere)
     
-    Align with **[Minimap2](https://github.com/lh3/minimap2)** to find overlapping segment.
+    - Align with **[Minimap2](https://github.com/lh3/minimap2)** to find overlapping segment.
     
-    Align chromosome and telomere to segment.
+    - Align chromosome and telomere to segment.
     
-    Convert to GAF.
+    - Convert to GAF.
     
     
     
@@ -86,21 +86,21 @@
 
     Step-by-step process detailed in **patch_creation-final.sh**
     
-    Concatenate telomere and rDNA patches.
+    - Concatenate telomere and rDNA patches.
     
-    Remove lines that look spurious 
+    - Remove lines that look spurious 
     
         insert_aln_gaps.py
         
-    Can be found in the **[Verkko](https://github.com/marbl/verkko/tree/master/src/scripts)** github 
+        Can be found in the **[Verkko](https://github.com/marbl/verkko/tree/master/src/scripts)** github 
         
-    Combine telomere and rDNA patches with Verkko files.
+    - Combine telomere and rDNA patches with Verkko files.
     
-    Comfirm gap patches.
+    - Comfirm gap patches.
     
         get_layout_from_mbg.py
         
-    Can be found in the **[Verkko](https://github.com/marbl/verkko/tree/master/src/scripts)** github 
+        Can be found in the **[Verkko](https://github.com/marbl/verkko/tree/master/src/scripts)** github 
         
-    Set up Verkko relaunch directory. 
+    - Set up Verkko relaunch directory. 
     
