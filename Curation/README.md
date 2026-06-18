@@ -9,9 +9,9 @@
         
         - Idenify gaps using Verkko and Verkko-Fillet output files
         
-        - Visualize gaps using 
+        - Visualize gaps using **[Bandage](https://github.com/asl/BandageNG)**
         
-        **[Bandage](https://github.com/asl/BandageNG)**
+        https://github.com/asl/BandageNG
         
             - asm-path-translate-printout-Bandage.py
             
