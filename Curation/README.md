@@ -23,7 +23,7 @@
         asm-path-flipper.py        
         asm-path-translate-printout.py
             
-     The last two scripts were originally built by **[Lee Ackerson](https://github.com/LeeAckersonIV/genome-asm/tree/main/helper-scripts)**
+        The last two scripts were originally built by **[Lee Ackerson](https://github.com/LeeAckersonIV/genome-asm/tree/main/helper-scripts)**
             
      -Insert patches into paths and prepare files for Verkko relaunch.
         
