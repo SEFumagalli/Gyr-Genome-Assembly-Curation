@@ -79,25 +79,30 @@ This repository contains **documentation**, **tutorials**, and **scripts** for p
 ### **Contents**
 - `Raw Data Processing`
     - Data statistics
-
-- `Assembly Comparisons`
-    - Assembly statistics
-    - T2T contigs/scaffold bargraph
     
 - `Verkko`
     - Example of general Verkko launch
     - Example of overlay (multiple phasing data types) Verkko launch
-
-- `Assembly Curation`
-    - Detailed steps on:
-        - Gap idenification, patch creation, and insertion to original path
-        - rDNA conversion from morph to array patch
-        - Telomere assessment and patch creation
-        - Relaunch of Verkko assembly
+    
+- `Assembly Comparisons`
+    - Assembly statistics
+    - T2T contigs/scaffold bargraph
         
 - `Verkko-Fillet`
     - Details on local modifications
     - Run via command line (includes many in-house scripts)
+    
+- `Gyr Assembly Curation`
+    - Gap idenification, patch creation, and insertion to original path
+    - rDNA conversion from morph to array patch
+    - Telomere assessment and patch creation
+    - Relaunch of Verkko assembly
         
 - `Example Files`
     - Files mentioned in scripts - for context
+    
+- `NCBI Reference Comparisons`
+    - Completeness & error detection
+    - Repeat identification
+    - Genome visualization
+        
