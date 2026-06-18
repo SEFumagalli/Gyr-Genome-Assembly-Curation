@@ -6,16 +6,21 @@
 1. Process gaps/tangles/bubbles
 
     Step-by-step process detailed in **patch_creation-gaps.sh**
+    
         - Idenify gaps using Verkko and Verkko-Fillet output files.
+        
         - Visualize gaps using **[Bandage](https://github.com/asl/BandageNG)** 
             - asm-path-translate-printout-Bandage.py
+            
         - Use **[Trivial Tangle Traverser](https://github.com/marbl/TTT)** for complex tangles.
             - tangle_traverser.sh
+            
         - For manual curation
             - asm-path-translate-printout-reverse.py
             - asm-path-flipper.py        
             - asm-path-translate-printout.py
-            The last two scripts were originally built by **[Lee Ackerson](https://github.com/LeeAckersonIV/genome-asm/tree/main/helper-scripts)** .
+            The last two scripts were originally built by **[Lee Ackerson](https://github.com/LeeAckersonIV/genome-asm/tree/main/helper-scripts)**
+            
         - Insert patches into paths and prepare files for Verkko relaunch
             - patch_2_path.sh
                 - update_patch_2_path.py
