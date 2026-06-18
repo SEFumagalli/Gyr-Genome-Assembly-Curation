@@ -23,7 +23,7 @@
         asm-path-flipper.py        
         asm-path-translate-printout.py
             
-     The last two scripts were originally built by **[Lee Ackerson](https://github.com/LeeAckersonIV/genome-asm/tree/main/helper-scripts)**
+    The last two scripts were originally built by **[Lee Ackerson](https://github.com/LeeAckersonIV/genome-asm/tree/main/helper-scripts)**
             
     Insert patches into paths and prepare files for Verkko relaunch.
         
@@ -32,9 +32,8 @@
         get_utig1_from_utig4.py
         addPatch.pl
                 
-        update_patch_2_path.py incorporates scripts from:
-            get_utig1_from_utig4.py can be found in the **[Verkko](https://github.com/marbl/verkko/tree/master/src/scripts)** github
-            addPatch.pl (Wen Huang) can be found on **[Lee Ackerson](https://github.com/LeeAckersonIV/genome-asm/tree/main/helper-scripts)** github
+    get_utig1_from_utig4.py can be found in the **[Verkko](https://github.com/marbl/verkko/tree/master/src/scripts)** github
+    addPatch.pl (Wen Huang) can be found on **[Lee Ackerson](https://github.com/LeeAckersonIV/genome-asm/tree/main/helper-scripts)** github
     
     
     
@@ -70,7 +69,7 @@
     
         rDNA-morph2patch.sh
         
-        Script originally built by **[Lee Ackerson](https://github.com/LeeAckersonIV/genome-asm/tree/main/helper-scripts)**
+    Script originally built by **[Lee Ackerson](https://github.com/LeeAckersonIV/genome-asm/tree/main/helper-scripts)**
         
     Identify flanking utigs (chromosome and telomere)
     
@@ -92,7 +91,7 @@
     
         insert_aln_gaps.py
         
-        Can be found in the **[Verkko](https://github.com/marbl/verkko/tree/master/src/scripts)** github 
+    Can be found in the **[Verkko](https://github.com/marbl/verkko/tree/master/src/scripts)** github 
         
     Combine telomere and rDNA patches with Verkko files.
     
@@ -100,7 +99,7 @@
     
         get_layout_from_mbg.py
         
-        Can be found in the **[Verkko](https://github.com/marbl/verkko/tree/master/src/scripts)** github 
+    Can be found in the **[Verkko](https://github.com/marbl/verkko/tree/master/src/scripts)** github 
         
     Set up Verkko relaunch directory. 
     
