@@ -326,3 +326,8 @@ All scripts are formatted for use on the Ceres cluster at the USDA.
 
     If you have multiple assemblies and want to easily view all the heatmaps at once. 
 
+
+
+If there are difficulties with Verkko-Fillet, try running verkko-fillet_bypass/chromo_assessment.sh. 
+
+    - This will get you many of the same output files. 
