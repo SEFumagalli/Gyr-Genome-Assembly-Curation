@@ -76,6 +76,8 @@ verkko_fillet_dir="/assembly/verkko2.2.1_hifi-duplex_tporec_verkko_fillet"
 	
 3. Visualize each gap in Bandage
 
+    [Bandage](https://github.com/asl/BandageNG)
+
     Find each gap in Bandage - multiple gaps may be located near one another.
     
     This will give us a general idea of the gap and how complex they are.
@@ -278,6 +280,14 @@ verkko_fillet_dir="/assembly/verkko2.2.1_hifi-duplex_tporec_verkko_fillet"
             - copy the 'Translated path' and paste 
             - if a valid path, a green check will show 
             - if not a valid path, a red x will show 
+
+
+    If the path needs to be reoriented or the path need to be converted from +/- to </>
+    
+        - use Lee Ackersons scripts (https://github.com/LeeAckersonIV/genome-asm/tree/main/helper-scripts)
+        
+            - asm-path-flipper.py        
+            - asm-path-translate.py
 
 
     Detached telomeres can be treated as gaps

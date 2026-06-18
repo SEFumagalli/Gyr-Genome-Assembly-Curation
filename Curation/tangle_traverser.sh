@@ -87,7 +87,7 @@ micromamba activate tangle_traverser
 python3 TTT.py \
 	--graph assembly.homopolymer-compressed.noseq.gfa \
 	--alignment /8-manualResolution/verkko.graphAlign_allONT.gaf \
-	--boundary-nodes gapid_38.boundaries \
+	--boundary-nodes <boundaries_file> \
 	--coverage utig4_upt.ont-coverage.csv \
 	--outdir <output directory name>
 
@@ -96,7 +96,7 @@ python3 TTT.py \
 python3 TTT.py \
     --graph /2-processGraph/unitig-unrolled-hifi-resolved.gfa \
     --alignment /3-align/alns-ont.gaf \
-    --boundary-nodes chr9_sire-utig1.boundaries \
+    --boundary-nodes <boundaries_file> \
     --coverage 2-processGraph/unitig-unrolled-hifi-resolved.ont-coverage.csv \
     --outdir <output directory name>
 
