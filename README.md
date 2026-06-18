@@ -91,11 +91,11 @@ This repository contains **documentation**, **tutorials**, and **scripts** for p
           - TrioCanu v. 1.6
     
         - **[UOA_Brahman_1](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_003369695.1/)**
-        	  - Angus x Brahman F1 hybrid
-        	  - haploid pseudohaplotype (alternate haplotype)
-        	  - male fetus
-        	  - PacBio Sequel; PacBio RSII; Illumina NextSeq
-        	  - TrioCanu v. 1.6
+          - Angus x Brahman F1 hybrid
+          - haploid pseudohaplotype (alternate haplotype)
+          - male fetus
+          - PacBio Sequel; PacBio RSII; Illumina NextSeq
+          - TrioCanu v. 1.6
 
 
 7. `Example Files`
