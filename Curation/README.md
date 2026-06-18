@@ -2,7 +2,7 @@
 
 ---
 
-
+**[Bandage](https://github.com/asl/BandageNG)**
 1. Process gaps/tangles/bubbles
 
     Step-by-step process detailed in **patch_creation-gaps.sh**
@@ -10,8 +10,6 @@
         - Idenify gaps using Verkko and Verkko-Fillet output files
         
         - Visualize gaps using **[Bandage](https://github.com/asl/BandageNG)**
-        
-        https://github.com/asl/BandageNG
         
             - asm-path-translate-printout-Bandage.py
             
