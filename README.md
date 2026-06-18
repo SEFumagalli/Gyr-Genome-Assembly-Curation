@@ -101,7 +101,3 @@ This repository contains **documentation**, **tutorials**, and **scripts** for p
         
 - `Example Files`
     - Files mentioned in scripts - for context
-
-- `helper-scripts`
-    - path translation between Bandage and Verkko scripts
-
