@@ -2,7 +2,7 @@
 
 ---
 
-**[Bandage](https://github.com/asl/BandageNG)**
+
 1. Process gaps/tangles/bubbles
 
     Step-by-step process detailed in **patch_creation-gaps.sh**
