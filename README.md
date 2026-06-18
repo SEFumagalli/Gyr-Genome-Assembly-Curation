@@ -82,7 +82,7 @@ This repository contains **documentation**, **tutorials**, and **scripts** for p
             - PacBio; Illumina NextSeq 500; Illumina HiSeq; Illumina GAII
             - Falcon v. FEB-2016 
     	
-        - *Bos indicus* x *Bos taurus*
+        -*Bos indicus* x *Bos taurus*
         - **[UOA_Angus_1](https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_003369685.2/)**
             - Angus x Brahman F1 hybrid
             - haploid pseudohaplotype (principal haplotype)
