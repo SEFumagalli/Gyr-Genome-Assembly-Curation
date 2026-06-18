@@ -292,7 +292,7 @@ mkdir $patch_dir && cd $patch_dir
         	rDNA-morph2patch.sh
         	
         
-            	python3 rDNA-morph2patch.py <consensus.fa> <patch_fasta_name> <median_haploid_copy_number>
+            	python3 rDNA-morph2patch.py <consensus.fa> <output_patch.fasta> <conkord_median_copy_number>
 
 	
 
