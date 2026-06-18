@@ -12,8 +12,11 @@ This repository contains **documentation**, **tutorials**, and **scripts** for p
 - *Bos (primigenius) indicus* - Gyr cattle
 - This project will highlight the differences in Verkko assembly output when a variety of data types are used.
 
-	- Blood was sampled from the male F1 Gyr and its parents
+### **Contents**
 
+1. `Raw Data Processing`
+	- Blood was sampled from the male F1 Gyr and its parents
+	- Data statistics
 	- 19 data combinations arranged for the Verkko assemblier --hifi, --nano, and phasing data flags.
         
         	1. PacBio long reads -> HiFi, Oxford Nanopore ultra long reads -> ONT, and DoveTail Genomics' Hi-C short reads -> Omni-C
@@ -37,72 +40,79 @@ This repository contains **documentation**, **tutorials**, and **scripts** for p
         	19. HiFi-Duplex, ONT, Pore-C, Trio (best assembly)
 
 
-- Using the best quality assembly (19 in the list above), this project also highlights the improvements over several current NCBI references:
+2. `Verkko`
+    - Example of general Verkko launch
+    - Example of overlay (multiple phasing data types) Verkko launch
+    
+3. `Assembly Comparisons`
+    - Assembly statistics
+    - T2T contigs/scaffold bargraph
+    
+4. `Verkko-Fillet`
+    - Details on local modifications
+    - Run via command line (includes many in-house scripts)
+    
+5. `Gyr Assembly Curation`
+    - Gap idenification, patch creation, and insertion to original path
+    - rDNA conversion from morph to array patch
+    - Telomere assessment and patch creation
+    - Relaunch of Verkko assembly
+    
+6. `NCBI Reference Comparisons`
+    - Completeness & error detection
+    - Repeat identification
+    - Genome visualization
+        
+    - Using the best quality assembly (19 in the list above), this project also highlights the improvements over several current NCBI references:
   
-  -*Bos indicus*
-    - **[NIAB-ARS_B.indTharparkar_mat_pri_1.0](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_029378745.1/)** 
-      - Sahiwal x Tharparkar
-      - haploid (maternal haplotype)
-      - female calf 
-      - PacBio Sequel
-      - TrioCanu v. 2.0
-            	
-  -*Bos taurus*
-    - **[ARS-UCD2.0](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_002263795.3/)** 
-      - Hereford
-      - diploid/haploid 
-      - male 11 yrs
-      - Dominette left lung
-      - PacBio; Illumina NextSeq 500; Illumina HiSeq; Illumina GAII
-      - Falcon v. FEB-2016 
-	
-  - *Bos indicus* x *Bos taurus*
-    - **[UOA_Angus_1](https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_003369685.2/)**
-      - Angus x Brahman F1 hybrid
-      - haploid pseudohaplotype (principal haplotype)
-      - male fetus
-      - PacBio RSII; PacBio Sequel; Illumina NextSeq
-      - TrioCanu v. 1.6
+      -*Bos indicus*
+        - **[NIAB-ARS_B.indTharparkar_mat_pri_1.0](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_029378745.1/)** 
+          - Sahiwal x Tharparkar
+          - haploid (maternal haplotype)
+          - female calf 
+          - PacBio Sequel
+          - TrioCanu v. 2.0
+                	
+      -*Bos taurus*
+        - **[ARS-UCD2.0](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_002263795.3/)** 
+          - Hereford
+          - diploid/haploid 
+          - male 11 yrs
+          - Dominette left lung
+          - PacBio; Illumina NextSeq 500; Illumina HiSeq; Illumina GAII
+          - Falcon v. FEB-2016 
+    	
+      - *Bos indicus* x *Bos taurus*
+        - **[UOA_Angus_1](https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_003369685.2/)**
+          - Angus x Brahman F1 hybrid
+          - haploid pseudohaplotype (principal haplotype)
+          - male fetus
+          - PacBio RSII; PacBio Sequel; Illumina NextSeq
+          - TrioCanu v. 1.6
+    
+        - **[UOA_Brahman_1](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_003369695.1/)**
+        	  - Angus x Brahman F1 hybrid
+        	  - haploid pseudohaplotype (alternate haplotype)
+        	  - male fetus
+        	  - PacBio Sequel; PacBio RSII; Illumina NextSeq
+        	  - TrioCanu v. 1.6
 
-    - **[UOA_Brahman_1](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_003369695.1/)**
-	  - Angus x Brahman F1 hybrid
-	  - haploid pseudohaplotype (alternate haplotype)
-	  - male fetus
-	  - PacBio Sequel; PacBio RSII; Illumina NextSeq
-	  - TrioCanu v. 1.6
+
+7. `Example Files`
+    - Files mentioned in scripts - for context
+   
+   
+    
 
 
 ---
 
 
 
-### **Contents**
-- `Raw Data Processing`
-    - Data statistics
+
     
-- `Verkko`
-    - Example of general Verkko launch
-    - Example of overlay (multiple phasing data types) Verkko launch
-    
-- `Assembly Comparisons`
-    - Assembly statistics
-    - T2T contigs/scaffold bargraph
+
         
-- `Verkko-Fillet`
-    - Details on local modifications
-    - Run via command line (includes many in-house scripts)
-    
-- `Gyr Assembly Curation`
-    - Gap idenification, patch creation, and insertion to original path
-    - rDNA conversion from morph to array patch
-    - Telomere assessment and patch creation
-    - Relaunch of Verkko assembly
+
         
-- `Example Files`
-    - Files mentioned in scripts - for context
-    
-- `NCBI Reference Comparisons`
-    - Completeness & error detection
-    - Repeat identification
-    - Genome visualization
-        
+
