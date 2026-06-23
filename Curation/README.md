@@ -30,9 +30,10 @@
         patch_2_path.sh
         update_patch_2_path.py
         get_utig1_from_utig4.py
+        graph_functions.py
         addPatch.pl
                 
-        get_utig1_from_utig4.py can be found in the **[Verkko](https://github.com/marbl/verkko/tree/master/src/scripts)** github
+        graph_functions.py and get_utig1_from_utig4.py can be found in the **[Verkko](https://github.com/marbl/verkko/tree/master/src/scripts)** github
     
         addPatch.pl (Wen Huang) can be found on **[Lee Ackerson](https://github.com/LeeAckersonIV/genome-asm/tree/main/helper-scripts)** github
     
