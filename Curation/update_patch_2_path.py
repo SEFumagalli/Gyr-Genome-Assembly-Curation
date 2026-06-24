@@ -507,7 +507,7 @@ def patches_to_dict(patches, name):
 
 
 
-def prepare_utig1_path(utig4s, get_utig1_from_utig4, convert_verkko_path, flip_and_swap, clean_utig1s):
+def prepare_utig1_path(data, get_utig1_from_utig4, gaf_format, convert_verkko_path, flip_and_swap, clean_utig1s):
     """
 
     convert utig4 path to utig1 path, convert to +/- format, flip orientation when needed, 
@@ -515,28 +515,23 @@ def prepare_utig1_path(utig4s, get_utig1_from_utig4, convert_verkko_path, flip_a
 
     """
 
-    utig1s = []
-    for i in utig4s:
-        if i.startswith('utig4'):
-            #print('utig4=',i)
-            #grab utig1 path from utig4_2_utig1
-            utig1 = get_utig1_from_utig4
-            utig1 = utig4_2_utig1.loc[i[:-1],'utig1-label']
-            #print('utig1=',utig1)
-            #convert to +/-
-            utig1 = convert_verkko_path(utig1)
-            #check directionality of utig4
-            if i.endswith('-'):
-                utig1 = flip_and_swap(utig1, str)
-                #print('flipped utig1=',utig1)
-            #clean utig1s
-            utig1 = clean_utig1s(utig1.split(","))
-            #print('cleaned utig1=',",".join(utig1))
+    #double check path is utig4
+    if data[0][0].startswith('utig4'):
+        #convert utig4s back into gaf format
+        utig4s = gaf_format(",".join(data[0]))
+        #print('utig4s=',utig4s)
 
-            utig1s.append(utig1)
+        #grab utig1 path from get_utig1_from_utigs
+        utig1 = get_utig1_from_utig4(data[1] + '\t' + utig4s + '\t' + data[2])
+        #print('utig1=',utig1)
 
-    #join all utig1 lists into one list
-    utig1s = list(itertools.chain.from_iterable(utig1s))
+        #convert to +/-
+        utig1 = convert_verkko_path(utig1)
+        utig1s = [utig1]
+        #print('utig1s=',utig1s)
+
+    else:
+        print('check path for utig4s')
 
     return utig1s
 
@@ -757,7 +752,7 @@ def combine_hapmers(final_paths, combine, combos_list, prepare_utig1_path, gaf_f
                 for p in parts_names:
                     if 'utig4' in combine[p][0][0]:
                         #print('converting to utig1')
-                        utig1s = prepare_utig1_path(combine[p][0], get_utig1_from_utig4, convert_verkko_path, flip_and_swap, clean_utig1s)
+                        utig1s = prepare_utig1_path(combine[p][0], get_utig1_from_utig4, gaf_format, convert_verkko_path, flip_and_swap, clean_utig1s)
                         parts.append(utig1s)
                     else:
                         #print('already in utig1')
