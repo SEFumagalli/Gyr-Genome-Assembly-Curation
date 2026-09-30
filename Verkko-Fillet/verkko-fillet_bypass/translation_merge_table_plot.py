@@ -31,6 +31,7 @@ parser.add_argument("--phase_datatype", type=str, help='phase datatype')
 parser.add_argument("--rDNA_fasta", type=str, help='rDNA reference fasta')
 parser.add_argument("--num_chromosomes", type=int, help='number of expected chromosomes - including X and Y')
 parser.add_argument("--rDNA_fasta_fai", type=str, help='assmbly rDNA fasta fai')
+parser.add_argument("--verkko_version", type=str, help='verkko version')
 parser.add_argument("--new_row", help='dictionary including new row to be added to translation file')
 
 args = parser.parse_args()
@@ -622,7 +623,7 @@ def duplicate_contig_check(translation_hap1, translation_hap2, scfs, ctgs, telo,
 
 
 
-def summary_table(df, phase_type, tracker_dict):
+def summary_table(df, phase_type, tracker_dict, version):
     """
 
     Sums ctgs, scfs, gaps, and telomeres for each haplotype
@@ -664,16 +665,22 @@ def summary_table(df, phase_type, tracker_dict):
             sum_dict = sum_columns(i, sum_dict, df, tracker_dict)
     if phase_type == 'trio':
         print('summing for dam/sire')
-        #for i in ['dam', 'sire']:
-        for i in ['sire', 'dam']:
-            sum_dict = sum_columns(i, sum_dict, df, tracker_dict)
+        if version == '2.3.2':
+            for i in ['dam', 'sire']:
+                sum_dict = sum_columns(i, sum_dict, df, tracker_dict)
+        else:
+            for i in ['sire', 'dam']:
+                sum_dict = sum_columns(i, sum_dict, df, tracker_dict)
     if phase_type == 'trio_hic':
         print('summing for hap1/hap2 and dam/sire')
         for i in ['haplotype1', 'haplotype2']:
             sum_dict = sum_columns(i, sum_dict, df, tracker_dict)
-        #for i in ['dam', 'sire']:
-        for i in ['sire', 'dam']:
-            sum_dict = sum_columns(i, sum_dict, df, tracker_dict)
+        if version == '2.3.2':
+            for i in ['dam', 'sire']:
+                sum_dict = sum_columns(i, sum_dict, df, tracker_dict)
+        else: 
+            for i in ['sire', 'dam']:
+                sum_dict = sum_columns(i, sum_dict, df, tracker_dict)
 
     df_summary = pd.DataFrame.from_dict(sum_dict, orient='index')
 
@@ -683,7 +690,7 @@ def summary_table(df, phase_type, tracker_dict):
 
 
 
-def upload_files(verkkoDir, rDNA_fasta, new_row):
+def upload_files(verkkoDir, rDNA_fasta, new_row, version):
     """
     
     Open all files needed. Check if ctgs and/or scfs tables are empty.
@@ -865,8 +872,10 @@ def upload_files(verkkoDir, rDNA_fasta, new_row):
             new_row_df = format_dict_to_df(new_row)
             #add new data to translation file
             print('translation1')
-            #translation_hap1 = filter_concat_addrow(new_row_df, translation_hap1, new_row, 'dam', 'haplotype1')
-            translation_hap1 = filter_concat_addrow(new_row_df, translation_hap1, new_row, 'sire', 'haplotype1')        
+            if version == '2.3.2':
+                translation_hap1 = filter_concat_addrow(new_row_df, translation_hap1, new_row, 'dam', 'haplotype1')
+            else:
+                translation_hap1 = filter_concat_addrow(new_row_df, translation_hap1, new_row, 'sire', 'haplotype1')        
     else:
         print('translation_hap1 file not found')
 
@@ -880,8 +889,10 @@ def upload_files(verkkoDir, rDNA_fasta, new_row):
             new_row_df = format_dict_to_df(new_row)
             #add new data to translation file
             print('translation2')
-            #translation_hap2 = filter_concat_addrow(new_row_df, translation_hap2, new_row, 'sire', 'haplotype2')
-            translation_hap2 = filter_concat_addrow(new_row_df, translation_hap2, new_row, 'dam', 'haplotype2') 
+            if version == '2.3.2':
+                translation_hap2 = filter_concat_addrow(new_row_df, translation_hap2, new_row, 'sire', 'haplotype2')
+            else:
+                translation_hap2 = filter_concat_addrow(new_row_df, translation_hap2, new_row, 'dam', 'haplotype2') 
     else:
         print('translation_hap2 file not found')
 
@@ -950,7 +961,7 @@ else:
 
 #if you want to remove a duplicate from appearing in the final files, hash out steps 3-5 and manually remove the duplicate from translation files
 
-ctgs, scfs, translation_hap1, translation_hap2, telo, gap, scfmap, paths, rDNA = upload_files(args.verkkoDir, args.rDNA_fasta_fai, new_row)
+ctgs, scfs, translation_hap1, translation_hap2, telo, gap, scfmap, paths, rDNA = upload_files(args.verkkoDir, args.rDNA_fasta_fai, new_row, args.verkko_version)
 
 print('combine scfmap and paths')
 scfmap_paths = pd.concat([scfmap, paths], axis=1).reset_index()
@@ -1024,6 +1035,6 @@ print('creating heatmap')
 tracker_dict = contigPlot(translation_merged, args.phase_datatype, ctgs, scfs, args.verkkoDir, args.num_chromosomes)
 
 print('sum columns in merged file')
-df_summary = summary_table(translation_merged, args.phase_datatype, tracker_dict)
+df_summary = summary_table(translation_merged, args.phase_datatype, tracker_dict, args.verkko_version)
 df_summary.to_csv(args.verkkoDir + '/translation_merged_summary.tsv', sep='\t')
    
