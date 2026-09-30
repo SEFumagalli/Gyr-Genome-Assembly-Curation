@@ -4,7 +4,6 @@
 import pandas as pd
 import argparse 
 import os
-import numpy as np
 from pandas.errors import EmptyDataError
 from collections import OrderedDict
 
@@ -16,6 +15,7 @@ parser=argparse.ArgumentParser()
 parser.add_argument("--mashmap", nargs="*", default=[])
 parser.add_argument("--translation", nargs="*", default=[])
 parser.add_argument("--num_chromosomes", help='number of chromosomes input')
+parser.add_argument("--verkko_version", help='verkko version')
 
 
 args = parser.parse_args()
@@ -390,7 +390,12 @@ def remove_sex_duplicates(df1, df2):
 
 
 def fix_sex_chromosomes(df1, df2):
+    """
 
+    This function checks that Y is associated with sire
+    and X is associated with dam
+
+    """
 
     if df1[1].str.contains('_chr_Y').any() and df1[1].str.contains('_chr_X').any():
         #both dfs have X and Y
@@ -496,7 +501,7 @@ for j,i in enumerate(trans_files):
         translation = pd.read_csv(i, sep='\t', header=None)
     else:
         translation = pd.DataFrame()
-    print('trans=',translation) 
+    #print('trans=',translation) 
 
     #if phasing data is trio and hic, mashmap has been previously filtered
     if trio_hic:
@@ -565,12 +570,20 @@ if trio_hic:
 
 
 print('checking sex chromosome duplicates')
-if translation_hap1[0].str.contains('sire').any() and translation_hap2[0].str.contains('dam').any():
-    print('checking sire/dam sex chromosomes')
-    translation_hap1, translation_hap2 = remove_sex_duplicates(translation_hap1, translation_hap2)
+if args.verkko_version == '2.3.2':
+    if translation_hap1[0].str.contains('dam').any() and translation_hap2[0].str.contains('sire').any():
+        print('checking sire/dam sex chromosomes')
+        translation_hap1, translation_hap2 = remove_sex_duplicates(translation_hap1, translation_hap2)
+    else:
+        print('checking hap1/hap2 sex chromosomes')
+        translation_hap1, translation_hap2 = fix_sex_chromosomes(translation_hap1, translation_hap2)
 else:
-    print('checking hap1/hap2 sex chromosomes')
-    translation_hap1, translation_hap2 = fix_sex_chromosomes(translation_hap1, translation_hap2)
+    if translation_hap1[0].str.contains('sire').any() and translation_hap2[0].str.contains('dam').any():
+        print('checking sire/dam sex chromosomes')
+        translation_hap1, translation_hap2 = remove_sex_duplicates(translation_hap1, translation_hap2)
+    else:
+        print('checking hap1/hap2 sex chromosomes')
+        translation_hap1, translation_hap2 = fix_sex_chromosomes(translation_hap1, translation_hap2)
 
 translation_hap1.to_csv('translation_hap1.csv', sep="\t", header=False, index=False)
 translation_hap2.to_csv('translation_hap2.csv', sep="\t", header=False, index=False)

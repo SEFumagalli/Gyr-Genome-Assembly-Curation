@@ -355,6 +355,57 @@ mkdir $patch_dir && cd $patch_dir
                 	sed s/de:f://g utig4-393_chr11.hap2_line1_patch.paf | awk -F "\t" '{ if (match($5, "-")) print $1"\t"$2"\t"$3"\t"$4"\t+\t<"$6"\t"$7"\t"$7-$9"\t"$7-$8"\t"$10"\t"$11"\t"$12"\t"$13"\t"$15"\tdv:f:"$21"\tid:f:"1-$21; else print $1"\t"$2"\t"$3"\t"$4"\t"$5"\t>"$6"\t"$7"\t"$8"\t"$9"\t"$10"\t"$11"\t"$12"\t"$13"\t"$15"\tdv:f:"$21"\tid:f:"1-$21 }' > utig4-393_chr11.hap2_line1_patch.gaf
    
    
-                	
-7. Final processing of these types of patches can be found in patch_creation-final.sh
+7. Convert paf to gaf
+
+	chromosome:
+	sed s/de:f://g utig4-439_chr11.hap2_line4_patch.paf | awk -F "\t" '{ if (match($5, "-")) print $1"\t"$2"\t"$3"\t"$4"\t+\t<"$6"\t"$7"\t"$7-$9"\t"$7-$8"\t"$10"\t"$11"\t"$12"\t"$13"\t"$15"\tdv:f:"$21"\tid:f:"1-$21; else print $1"\t"$2"\t"$3"\t"$4"\t"$5"\t>"$6"\t"$7"\t"$8"\t"$9"\t"$10"\t"$11"\t"$12"\t"$13"\t"$15"\tdv:f:"$21"\tid:f:"1-$21 }' > utig4-439_chr11.hap2_line4_patch.gaf
+	sed s/de:f://g utig4-438_chr11.hap1_line1_patch.paf | awk -F "\t" '{ if (match($5, "-")) print $1"\t"$2"\t"$3"\t"$4"\t+\t<"$6"\t"$7"\t"$7-$9"\t"$7-$8"\t"$10"\t"$11"\t"$12"\t"$13"\t"$15"\tdv:f:"$21"\tid:f:"1-$21; else print $1"\t"$2"\t"$3"\t"$4"\t"$5"\t>"$6"\t"$7"\t"$8"\t"$9"\t"$10"\t"$11"\t"$12"\t"$13"\t"$15"\tdv:f:"$21"\tid:f:"1-$21 }' > utig4-438_chr11.hap1_line1_patch.gaf
+	sed s/de:f://g utig4-278_chr3.hap1_line7_patch.paf | awk -F "\t" '{ if (match($5, "-")) print $1"\t"$2"\t"$3"\t"$4"\t+\t<"$6"\t"$7"\t"$7-$9"\t"$7-$8"\t"$10"\t"$11"\t"$12"\t"$13"\t"$15"\tdv:f:"$21"\tid:f:"1-$21; else print $1"\t"$2"\t"$3"\t"$4"\t"$5"\t>"$6"\t"$7"\t"$8"\t"$9"\t"$10"\t"$11"\t"$12"\t"$13"\t"$15"\tdv:f:"$21"\tid:f:"1-$21 }' > utig4-278_chr3.hap1_line7_patch.gaf
+	sed s/de:f://g utig4-918_chr3.hap2_line1_patch.paf | awk -F "\t" '{ if (match($5, "-")) print $1"\t"$2"\t"$3"\t"$4"\t+\t<"$6"\t"$7"\t"$7-$9"\t"$7-$8"\t"$10"\t"$11"\t"$12"\t"$13"\t"$15"\tdv:f:"$21"\tid:f:"1-$21; else print $1"\t"$2"\t"$3"\t"$4"\t"$5"\t>"$6"\t"$7"\t"$8"\t"$9"\t"$10"\t"$11"\t"$12"\t"$13"\t"$15"\tdv:f:"$21"\tid:f:"1-$21 }' > utig4-918_chr3.hap2_line1_patch.gaf
+	sed s/de:f://g utig4-982_chr2.hap2_line1_patch.paf | awk -F "\t" '{ if (match($5, "-")) print $1"\t"$2"\t"$3"\t"$4"\t+\t<"$6"\t"$7"\t"$7-$9"\t"$7-$8"\t"$10"\t"$11"\t"$12"\t"$13"\t"$15"\tdv:f:"$21"\tid:f:"1-$21; else print $1"\t"$2"\t"$3"\t"$4"\t"$5"\t>"$6"\t"$7"\t"$8"\t"$9"\t"$10"\t"$11"\t"$12"\t"$13"\t"$15"\tdv:f:"$21"\tid:f:"1-$21 }' > utig4-982_chr2.hap2_line1_patch.gaf
+	sed s/de:f://g utig4-376_chr25.hap1_2_line2_patch.paf | awk -F "\t" '{ if (match($5, "-")) print $1"\t"$2"\t"$3"\t"$4"\t+\t<"$6"\t"$7"\t"$7-$9"\t"$7-$8"\t"$10"\t"$11"\t"$12"\t"$13"\t"$15"\tdv:f:"$21"\tid:f:"1-$21; else print $1"\t"$2"\t"$3"\t"$4"\t"$5"\t>"$6"\t"$7"\t"$8"\t"$9"\t"$10"\t"$11"\t"$12"\t"$13"\t"$15"\tdv:f:"$21"\tid:f:"1-$21 }' > utig4-376_chr25.hap1_2_line2_patch.gaf
+	sed s/de:f://g utig4-607_chr2.hap1_line1_patch.paf | awk -F "\t" '{ if (match($5, "-")) print $1"\t"$2"\t"$3"\t"$4"\t+\t<"$6"\t"$7"\t"$7-$9"\t"$7-$8"\t"$10"\t"$11"\t"$12"\t"$13"\t"$15"\tdv:f:"$21"\tid:f:"1-$21; else print $1"\t"$2"\t"$3"\t"$4"\t"$5"\t>"$6"\t"$7"\t"$8"\t"$9"\t"$10"\t"$11"\t"$12"\t"$13"\t"$15"\tdv:f:"$21"\tid:f:"1-$21 }' > utig4-607_chr2.hap1_line1_patch.gaf
+
+	telomere:
+	sed s/de:f://g utig4-393_chr11.hap2_line1_patch.paf | awk -F "\t" '{ if (match($5, "-")) print $1"\t"$2"\t"$3"\t"$4"\t+\t<"$6"\t"$7"\t"$7-$9"\t"$7-$8"\t"$10"\t"$11"\t"$12"\t"$13"\t"$15"\tdv:f:"$21"\tid:f:"1-$21; else print $1"\t"$2"\t"$3"\t"$4"\t"$5"\t>"$6"\t"$7"\t"$8"\t"$9"\t"$10"\t"$11"\t"$12"\t"$13"\t"$15"\tdv:f:"$21"\tid:f:"1-$21 }' > utig4-393_chr11.hap2_line1_patch.gaf
+	sed s/de:f://g utig4-1331_chr11.hap1_line1_patch.paf | awk -F "\t" '{ if (match($5, "-")) print $1"\t"$2"\t"$3"\t"$4"\t+\t<"$6"\t"$7"\t"$7-$9"\t"$7-$8"\t"$10"\t"$11"\t"$12"\t"$13"\t"$15"\tdv:f:"$21"\tid:f:"1-$21; else print $1"\t"$2"\t"$3"\t"$4"\t"$5"\t>"$6"\t"$7"\t"$8"\t"$9"\t"$10"\t"$11"\t"$12"\t"$13"\t"$15"\tdv:f:"$21"\tid:f:"1-$21 }' > utig4-1331_chr11.hap1_line1_patch.gaf
+	sed s/de:f://g utig4-259_chr3.hap1_line1_patch.paf | awk -F "\t" '{ if (match($5, "-")) print $1"\t"$2"\t"$3"\t"$4"\t+\t<"$6"\t"$7"\t"$7-$9"\t"$7-$8"\t"$10"\t"$11"\t"$12"\t"$13"\t"$15"\tdv:f:"$21"\tid:f:"1-$21; else print $1"\t"$2"\t"$3"\t"$4"\t"$5"\t>"$6"\t"$7"\t"$8"\t"$9"\t"$10"\t"$11"\t"$12"\t"$13"\t"$15"\tdv:f:"$21"\tid:f:"1-$21 }' > utig4-259_chr3.hap1_line1_patch.gaf
+	sed s/de:f://g utig4-70_chr3.hap2_line1_patch.paf | awk -F "\t" '{ if (match($5, "-")) print $1"\t"$2"\t"$3"\t"$4"\t+\t<"$6"\t"$7"\t"$7-$9"\t"$7-$8"\t"$10"\t"$11"\t"$12"\t"$13"\t"$15"\tdv:f:"$21"\tid:f:"1-$21; else print $1"\t"$2"\t"$3"\t"$4"\t"$5"\t>"$6"\t"$7"\t"$8"\t"$9"\t"$10"\t"$11"\t"$12"\t"$13"\t"$15"\tdv:f:"$21"\tid:f:"1-$21 }' > utig4-70_chr3.hap2_line1_patch.gaf
+	sed s/de:f://g utig4-456_chr2.hap2_line1_patch.paf | awk -F "\t" '{ if (match($5, "-")) print $1"\t"$2"\t"$3"\t"$4"\t+\t<"$6"\t"$7"\t"$7-$9"\t"$7-$8"\t"$10"\t"$11"\t"$12"\t"$13"\t"$15"\tdv:f:"$21"\tid:f:"1-$21; else print $1"\t"$2"\t"$3"\t"$4"\t"$5"\t>"$6"\t"$7"\t"$8"\t"$9"\t"$10"\t"$11"\t"$12"\t"$13"\t"$15"\tdv:f:"$21"\tid:f:"1-$21 }' > utig4-456_chr2.hap2_line1_patch.gaf
+	sed s/de:f://g utig4-2334_chr25.hap1_2_line1_patch.paf | awk -F "\t" '{ if (match($5, "-")) print $1"\t"$2"\t"$3"\t"$4"\t+\t<"$6"\t"$7"\t"$7-$9"\t"$7-$8"\t"$10"\t"$11"\t"$12"\t"$13"\t"$15"\tdv:f:"$21"\tid:f:"1-$21; else print $1"\t"$2"\t"$3"\t"$4"\t"$5"\t>"$6"\t"$7"\t"$8"\t"$9"\t"$10"\t"$11"\t"$12"\t"$13"\t"$15"\tdv:f:"$21"\tid:f:"1-$21 }' > utig4-2334_chr25.hap1_2_line1_patch.gaf
+	sed s/de:f://g utig4-356_chr2.hap1_line1_patch.paf | awk -F "\t" '{ if (match($5, "-")) print $1"\t"$2"\t"$3"\t"$4"\t+\t<"$6"\t"$7"\t"$7-$9"\t"$7-$8"\t"$10"\t"$11"\t"$12"\t"$13"\t"$15"\tdv:f:"$21"\tid:f:"1-$21; else print $1"\t"$2"\t"$3"\t"$4"\t"$5"\t>"$6"\t"$7"\t"$8"\t"$9"\t"$10"\t"$11"\t"$12"\t"$13"\t"$15"\tdv:f:"$21"\tid:f:"1-$21 }' > utig4-356_chr2.hap1_line1_patch.gaf
+
+   
+             	
+8. Concatenate all telomere and rDNA patches into a single file 
+
+
+	cat ../rDNA/utig4-439_chr11.hap2_RC_line1.patch.gaf ../telomeres/utig4-393_RC_chr11.hap2_RC_line1.patch.gaf ../rDNA/utig4-438_chr11.hap1_line1.patch.gaf ../telomeres/utig4-1331_RC_chr11.hap1_line1.patch.gaf ../telomeres/telo_1854/utig4-1854_utig4-1854_line1.patch.gaf ../telomeres/telo_1854/utig4-2375_utig4-1854_line1.patch.gaf > patchAlign.gaf
+
+    cat ../rDNA/utig4-439_chr11.hap2_RC_line1.patch.gfa ../telomeres/utig4-393_RC_chr11.hap2_RC_line1.patch.gfa ../rDNA/utig4-438_chr11.hap1_line1.patch.gfa ../telomeres/utig4-1331_RC_chr11.hap1_line1.patch.gfa ../telomeres/telo_1854/utig4-1854_utig4-1854_line1.patch.gfa ../telomeres/telo_1854/utig4-2375_utig4-1854_line1.patch.gfa > patchAlign.gfa
+    
+    
+    Make sure there are pairs of alignments with the same name on the left side of the patchAlign.gaf
+    
+        - Example
+
+            tangle0_heavy_path      2918278 15      8687    +       >utig4-439      5616868 5608223 5616851 8511    8672    60      tp:A:P  s1:i:8501       dv:f:   id:f:1
+            tangle0_heavy_path      2918278 2782124 2912763 +       <utig4-393      155286  9       129297  122644  131376  60      tp:A:P  s1:i:121972     dv:f:   id:f:1
+            tangle1_heavy_path      3107320 15      15023   +       >utig4-438      5724960 5709947 5724951 14733   15012   60      tp:A:P  s1:i:14730      dv:f:   id:f:1
+            tangle1_heavy_path      3107320 3040503 3107316 +       >utig4-1331     77961   18      66979   64179   67233   60      tp:A:P  s1:i:64002      dv:f:   id:f:1
+
+
+
+8. Remove lines that look spurious in the rDNA and telomere patches
+
+    This script can be found on the Verkko github   https://github.com/marbl/verkko
+
+        	micromamba activate verkko-v2.2.1
+
+        	insert_aln_gaps.py ../assembly.homopolymer-compressed.gfa patchAlign.gaf 1 100000 patch.nogap.gaf patch.gaf gapmanual y > patch.gfa
+
+        
+        - if Verkko does not accept your patch, it will not produce a result and say '0 gaps inserted'
+        
+        - the window_size can be increased (100000) but within reason
   

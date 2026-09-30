@@ -11,27 +11,27 @@
         
     - Visualize gaps using **[Bandage](https://github.com/asl/BandageNG)** 
             
-        asm-path-translate-printout-Bandage.py
+        asm-path-translate-printout-Bandage.py --> formats path for visualization
             
     - Use **[Trivial Tangle Traverser](https://github.com/marbl/TTT)** for complex tangles.
         
-        tangle_traverser.sh
+        tangle_traverser.sh --> finds tangle traversals for utig4 or utig1 paths
             
     - For manual curation
         
-        asm-path-translate-printout-reverse.py
-        asm-path-flipper.py        
-        asm-path-translate-printout.py
+        asm-path-translate-printout-reverse.py --> converts </> to +/-
+        asm-path-flipper.py                    --> flips path to reverse orientation
+        asm-path-translate-printout.py         --> converts +/- to </>
             
         The last two scripts were originally built by **[Lee Ackerson](https://github.com/LeeAckersonIV/genome-asm/tree/main/helper-scripts)**
             
      - Insert patches into paths and prepare files for Verkko relaunch.
         
-        patch_2_path.sh
-        update_patch_2_path.py
-        get_utig1_from_utig4.py
-        graph_functions.py
-        addPatch.pl
+        patch_2_path.sh         --> calls update_patch_2_path.py and addPatch.pl
+        update_patch_2_path.py  --> inserts patches and combines, replaces, or splits hapmers
+        get_utig1_from_utig4.py --> Verkko script to convert utig4 paths into utig1 paths
+        graph_functions.py      --> Verkko script called by get_utig1_from_utig4.py
+        addPatch.pl             --> reorganizes hapmers
                 
         graph_functions.py and get_utig1_from_utig4.py can be found in the **[Verkko](https://github.com/marbl/verkko/tree/master/src/scripts)** github
     
@@ -47,7 +47,7 @@
     
     - Visualize telomere using **[Bandage](https://github.com/asl/BandageNG)** 
     
-        asm-path-translate-printout-Bandage.py
+        asm-path-translate-printout-Bandage.py --> formats path for visualization
         
     - Align with **[Minimap2](https://github.com/lh3/minimap2)** to find overlapping segment.
     
@@ -69,7 +69,7 @@
     
     - Convert rDNA morph to patch
     
-        rDNA-morph2patch.sh
+        rDNA-morph2patch.sh --> takes Ribotin's consensus.fasta and Conkord's repeat copy number and creates a final consensus rDNA morph
         
         Script originally built by **[Lee Ackerson](https://github.com/LeeAckersonIV/genome-asm/tree/main/helper-scripts)**
         
@@ -91,13 +91,13 @@
     
     - Remove lines that look spurious 
     
-        insert_aln_gaps.py
+        insert_aln_gaps.py --> Verkko script that tests rDNA patch
         
         Can be found in the **[Verkko](https://github.com/marbl/verkko/tree/master/src/scripts)** github 
         
     - Combine telomere and rDNA patches with Verkko files.
     
-    - Comfirm gap patches.
+    - Comfirm new assembly tangle and rDNA patches are valid.
     
         get_layout_from_mbg.py
         

@@ -610,7 +610,7 @@ def summary_table(df, phase_type, tracker_dict):
 
     """
     
-    def sum_columns(i, sum_dict, df, tracker_dict):
+    def sum_columns(i, sum_dict, df, tracker_dict, version):
         
         #grab column names
         cols = df.columns.tolist()
@@ -644,14 +644,22 @@ def summary_table(df, phase_type, tracker_dict):
             sum_dict = sum_columns(i, sum_dict, df, tracker_dict)
     if phase_type == 'trio':
         print('summing for dam/sire')
-        for i in ['dam', 'sire']:
-            sum_dict = sum_columns(i, sum_dict, df, tracker_dict)    
+        if version == '2.3.2':
+            for i in ['dam', 'sire']:
+                sum_dict = sum_columns(i, sum_dict, df, tracker_dict)    
+        else:
+            for i in ['sire', 'dam']:
+                sum_dict = sum_columns(i, sum_dict, df, tracker_dict)
     if phase_type == 'trio_hic':
         print('summing for hap1/hap2 and dam/sire')
         for i in ['haplotype1', 'haplotype2']:
             sum_dict = sum_columns(i, sum_dict, df, tracker_dict)
-        for i in ['dam', 'sire']:
-            sum_dict = sum_columns(i, sum_dict, df, tracker_dict)
+        if version == '2.3.2':
+            for i in ['dam', 'sire']:
+                sum_dict = sum_columns(i, sum_dict, df, tracker_dict)
+        else:
+            for i in ['sire', 'dam']:
+                sum_dict = sum_columns(i, sum_dict, df, tracker_dict)
 
 
     df_summary = pd.DataFrame.from_dict(sum_dict, orient='index')
@@ -662,7 +670,7 @@ def summary_table(df, phase_type, tracker_dict):
 
 
 
-def upload_files(verkkoDir, rDNA_fasta, new_row):
+def upload_files(verkkoDir, rDNA_fasta, new_row, version):
     """
     
     Open all files needed. Check if ctgs and/or scfs tables are empty.
@@ -842,7 +850,12 @@ def upload_files(verkkoDir, rDNA_fasta, new_row):
             new_row_df = format_dict_to_df(new_row)
             #add new data to translation file
             print('translation1')
-            translation_hap1 = filter_concat_addrow(new_row_df, translation_hap1, new_row, 'sire', 'haplotype1')  
+            if version == '2.3.2':
+                translation_hap1 = filter_concat_addrow(new_row_df, translation_hap1, new_row, 'sire', 'haplotype1')  
+                print('haplotype 1 - sire')
+            else:
+                translation_hap1 = filter_concat_addrow(new_row_df, translation_hap1, new_row, 'dam', 'haplotype1')
+                print('haplotype 2 - dam')
     else:
         print(verkkoDir[:-1] + "_verkko_fillet/chromosome_assignment/translation_hap1 not found")
 
@@ -856,7 +869,12 @@ def upload_files(verkkoDir, rDNA_fasta, new_row):
             new_row_df = format_dict_to_df(new_row)          
             #add new data to translation file
             print('translation2')
-            translation_hap2 = filter_concat_addrow(new_row_df, translation_hap2, new_row, 'dam', 'haplotype2')
+            if version == '2.3.2':
+                translation_hap2 = filter_concat_addrow(new_row_df, translation_hap2, new_row, 'dam', 'haplotype2')
+                print('haplotype 2 - dam')
+            else:
+                translation_hap2 = filter_concat_addrow(new_row_df, translation_hap2, new_row, 'sire', 'haplotype2')
+                print('haplotype 2 - sire')
     else:
         print(verkkoDir[:-1] + "_verkko_fillet/chromosome_assignment/translation_hap2 not found")
   

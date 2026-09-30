@@ -11,18 +11,17 @@
 #SBATCH --output=Gyr_verkko2.2.1.out
 #SBATCH --error=Gyr_verkko2.2.1.err
 
-#This is a general launch of the verkko assembly.
-#verkko v2.2, v2.2.1, and v2.3.2 were used to create the assemblies.
+#This is a general relaunch of the verkko assembly.
 
 date
 
-micromamba activate verkko-v2.3.2
+micromamba activate verkko-v2.2.1
 
 #always touch and then dry-run on verkko before doing a full run
 #--snakeopts "--touch"
 #--snakeopts "--dry-run"
 
-verkko --slurm -d <assembly_directory_name> --red-run 8 40 8 --unitig-abundance 4 \
+verkko --slurm -d <assembly_directory_name_final_asm> --red-run 8 40 8 --unitig-abundance 4 \
     --hifi <long_read_fastq.gz> \
     --nano <ultra_long_read_fastq.gz> \
     --screen <file_name> <reference_mito_fasta> \

@@ -20,6 +20,8 @@ To run Verkko generally, use launch_Gyr_verkko.sh.
         --porec/hic/hapmers  phasing read fastq.gz
         
         
+        
+        
 To run Verkko with multiple phasing data types, use launch_Gyr_verkko_overlay.sh.
 
 **launch_Gyr_verkko_overlay.sh**
@@ -51,6 +53,8 @@ To run Verkko with multiple phasing data types, use launch_Gyr_verkko_overlay.sh
         - cd ..
 
     6. Hi-C phasing
+    
+        micromamba activate verkko-v2.2.1
 
         verkko --slurm -d verkko2.2.1_hifi-duplex_tporec --snakeopts '-U hicPhasing' \
             --ovb-run 8 32 32 \
@@ -75,7 +79,65 @@ To run Verkko with multiple phasing data types, use launch_Gyr_verkko_overlay.sh
 
     8. Final run
     
+        micromamba activate verkko-v2.2.1
+    
         verkko --slurm -d verkko2.2.1_hifi-duplex_tporec --ovb-run 8 32 32 \
+            --screen cattle_MT Cattle_Mt.fasta \
+            --screen cattle_rDNA Cattle_rDNA.fasta \ 
+            --hifi hifi-duplex/*fastq.gz \
+            --nano ont/*fastq.gz \
+            --porec porec/*fastq.gz
+
+
+
+After fixing tangles, rDNA, and telomeres, use relaunch_Gyr_verkko.sh.
+
+**relaunch_Gyr_verkko.sh**
+    
+    Relaunching an assembly that uses Trio and a type of Hi-C is slightly different than relaunching for Trio only.
+    
+    1. mkdir verkko2.2.1_hifi-duplex_tporec
+
+    2. Symlink files from HiFi-Duplex/ONT-UL/Trio/Pore-C
+        - ln -s ../verkko2.2.1_hifi-duplex_tporec/0-correction/
+        - ln -s ../verkko2.2.1_hifi-duplex_tporec/1-buildGraph/
+        	- ln -s ../verkko2.2.1_hifi-duplex_tporec/2-processGraph/
+        	- ln -s ../verkko2.2.1_hifi-duplex_tporec/3-align/3-align
+        	- ln -s ../verkko2.2.1_hifi-duplex_tporec/3-align/3-alignTips/
+        	- ln -s ../verkko2.2.1_hifi-duplex_tporec/4-processONT/
+        	- ln -s ../verkko2.2.1_hifi-duplex_tporec/5-untip/
+
+    3. mkdir 6-rukki --> these files can be found in 8-hicPipeline for assemblies with Hi-C data
+        - cd 6-rukki
+        - cp ../../verkko2.2.1_hifi-duplex_tporec/gaps/gap.paths.gaf rukki.paths.gaf
+        - cp ../../verkko2.2.1_hifi-duplex_tporec/gaps/gap.paths.gaf rukki.paths.tsv
+        - cp ../../verkko2.2.1_hifi-duplex_tporec/6-rukki/label1 .
+        - cp ../../verkko2.2.1_hifi-duplex_tporec/6-rukki/label2 .
+        - cp ../../verkko2.2.1_hifi-duplex_tporec/6-rukki/unitig-unrolled-unitig-unrolled-popped-unitig-normal-connected-tip.colors.csv .
+        - cp ../../verkko2.2.1_hifi-duplex_tporec/6-rukki/unitig-unrolled-unitig-unrolled-popped-unitig-normal-connected-tip.noseq.gfa .
+        - cd ..
+
+    4. mkdir 6-layoutContigs --> make sure these are the updated files with the alignments and tangle corrections
+        - cd 6-layoutContigs
+        - ln -s ../../verkko2.2.1_hifi-duplex_tporec/final/combined-nodemap.txt
+        	- ln -s ../../verkko2.2.1_hifi-duplex_tporec/final/combined-edges.gfa
+        	- ln -s ../../verkko2.2.1_hifi-duplex_tporec/final/combined-alignments.gaf
+        	- ln -s ../../verkko2.2.1_hifi-duplex_tporec/final/nodelens.txt
+        	- ln -s ../../verkko2.2.1_hifi-duplex_tporec/final/unitig-popped.layout
+        - ln -s ../../verkko2.2.1_hifi-duplex_tporec/final/unitig-popped.layout.scfmap
+        - cd ..
+	
+	5. mkdir 7-consensus  --> make sure these are the updated files with the alignments and tangle corrections
+        	- cd 7-consensus
+        	- ln -s ../../verkko2.2.1_hifi-duplex_tporec/final/ont_subset.id
+        	- ln -s ../../verkko2.2.1_hifi-duplex_tporec/final/ont_subset.fasta.gz
+        - cd ..
+        
+    6. Launch rerun
+    
+        micromamba activate verkko-v2.2.1
+    
+        verkko --slurm -d verkko2.2.1_hifi-duplex_tporec_final_asm --ovb-run 8 32 32 \
             --screen cattle_MT Cattle_Mt.fasta \
             --screen cattle_rDNA Cattle_rDNA.fasta \ 
             --hifi hifi-duplex/*fastq.gz \
