@@ -100,11 +100,11 @@ After fixing tangles, rDNA, and telomeres, use relaunch_Gyr_verkko.sh.
 
     2. Symlink files from HiFi-Duplex/ONT-UL/Trio
         - ln -s ../verkko2.3.2_hifi-duplex_trio/1-buildGraph/
-        	- ln -s ../verkko2.3.2_hifi-duplex_trio/2-processGraph/
-        	- ln -s ../verkko2.3.2_hifi-duplex_trio/3-align/
-        	- ln -s ../verkko2.3.2_hifi-duplex_trio/3-align/
-        	- ln -s ../verkko2.3.2_hifi-duplex_trio/4-processONT/
-        	- ln -s ../verkko2.3.2_hifi-duplex_trio/5-untip/
+        - ln -s ../verkko2.3.2_hifi-duplex_trio/2-processGraph/
+        - ln -s ../verkko2.3.2_hifi-duplex_trio/3-align/
+        - ln -s ../verkko2.3.2_hifi-duplex_trio/3-align/
+        - ln -s ../verkko2.3.2_hifi-duplex_trio/4-processONT/
+        - ln -s ../verkko2.3.2_hifi-duplex_trio/5-untip/
 
     3. mkdir 6-rukki --> these files can be found in 8-hicPipeline for assemblies with Hi-C data
         - cd 6-rukki
@@ -119,12 +119,12 @@ After fixing tangles, rDNA, and telomeres, use relaunch_Gyr_verkko.sh.
     4. mkdir 6-layoutContigs --> make sure these are the updated files with the alignments and tangle corrections
         - cd 6-layoutContigs
         - cp ../../verkko2.3.2_hifi-duplex_trio/final/combined-nodemap.txt .
-        	- cp ../../verkko2.3.2_hifi-duplex_trio/final/combined-edges.gfa .
-        	- cp ../../verkko2.3.2_hifi-duplex_trio/final/combined-alignments.gaf .
-        	- cp ../../verkko2.3.2_hifi-duplex_trio/final/nodelens.txt .
-        	- cp ../../verkko2.3.2_hifi-duplex_trio/final/unitig-popped.layout .
-        	- cp ../../verkko2.3.2_hifi-duplex_trio/final/unitig-popped.layout.scfmap .
-        	- cd ..
+        - cp ../../verkko2.3.2_hifi-duplex_trio/final/combined-edges.gfa .
+        - cp ../../verkko2.3.2_hifi-duplex_trio/final/combined-alignments.gaf .
+        - cp ../../verkko2.3.2_hifi-duplex_trio/final/nodelens.txt .
+        - cp ../../verkko2.3.2_hifi-duplex_trio/final/unitig-popped.layout .
+        - cp ../../verkko2.3.2_hifi-duplex_trio/final/unitig-popped.layout.scfmap .
+        - cd ..
 	
 	5. mkdir 7-consensus  --> make sure these are the updated files with the alignments and tangle corrections
         	- cd 7-consensus
