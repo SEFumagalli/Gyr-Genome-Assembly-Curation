@@ -182,7 +182,7 @@
             verkko
     
         - Input:
-            - assembly.fasta
+            - assembly_chr.fasta
             - read.fastq
             - assembly.bam (only available for NIAB-ARS_B.indTharparkar_mat_pri_1.0)
             
@@ -244,3 +244,79 @@
     samtools faidx assembly.chr4_only.fna
     samtools faidx assembly.chr6_only.fna
     samtools faidx assembly.chr14_only.fna
+    
+   
+    
+12. **Compare different types of mis-assemblies**
+
+    - Run `bam_2_cov-flagger.sh`
+    
+        This script reports several types of mis-assemblies - erroneous, duplicated, haploid, and collapsed
+        
+        - Input: 
+            - assembly_filtered.bam
+            - annotations_path.json
+            
+        - Output:
+            - coverage_file.cov.gz
+            - results.tsv
+        
+    
+    - Run `nucflag.sh`
+    
+        This script creates nuclotide frequency plots and includes mis-assembly info
+        
+        - Input: 
+            - assembly_filtered.bam
+            - assembly_chr.bed
+
+        - Output: 
+            - mis-assembly plots 
+            - BED files
+            
+            
+    - Run `nucfreq.sh`
+    
+        This script creates read depth plots and BED files
+        
+        - Input: 
+            - assembly_filtered.bam
+            - assembly_chr.bed
+        
+        - Output: 
+            - read depth plots
+            - BED files    
+            
+            
+
+13. **Compare sequence repeats**
+
+    - Run `repeatmasker.sh`
+    
+        This script identifies the number of elements (LINEs, SINEs, LTRs, DNA, unclassified, interspersed, small RNA, satellites, simple repeats, and low complexity)
+        
+        - Input:
+            - assembly_chr.fasta
+            - ~/RepeatMasker_4.0.6_lib/CONS-20160829/bos_taurus
+            
+        - Output:
+            - repeat.tbl
+            
+            
+            
+14. **Compare assembly identity**
+
+    - Run `moddotplot.sh`
+    
+        This script creates dot plot figures comparing each NCBI reference to the Gyr assembly
+        
+        - Input: 
+            - NCBI_assembly.fasta
+            - Gyr_assembly.fasta
+        
+        - Output: 
+            - dot_plot.pdf
+            - dot_plot.png
+            - alignment.bed
+    
+    
