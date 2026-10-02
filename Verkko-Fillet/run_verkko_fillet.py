@@ -43,7 +43,6 @@ parser.add_argument("--gaps", type=str, help='do you want to identify the gaps?'
 parser.add_argument("--mashmap_id_threshold", type=int, help='mashmap identity threshold - default: 95')
 parser.add_argument("--rDNA_fasta_fai", type=str, help='assembly rDNA fasta fai')
 parser.add_argument("--new_row", help='dictionary including new row to be added to translation file')
-parser.add_argument("--verkko_version", type=str, help='verkko version')
 
 args = parser.parse_args()
 
@@ -117,7 +116,7 @@ vf.tl.convertRefName(args.ref_fasta, map_file, out_fasta="converted_reference")
 #force chrAssign to rerun and recreate the translation files -- add flag: force=True
 #to rerun chrAssign -- must unhash convertRefName and #5 Chromosome assignment if loop 
 #if you modified the translation_hap files in chromosome_assignment vf folder and you want to recreate everything downstream, hash out chrAssign and convertRefName
-vf.tl.chrAssign(obj = obj, ref = "converted_reference", datatype=args.phase_datatype, chr_num=args.exp_chr_num, id_thr=args.mashmap_id_threshold, verkko_version=args.verkko_version)
+vf.tl.chrAssign(obj = obj, ref = "converted_reference", datatype=args.phase_datatype, chr_num=args.exp_chr_num, id_thr=args.mashmap_id_threshold)
 
 
 #Create translation_merge file and contigPlot
@@ -134,7 +133,7 @@ else:
 
 #if you want to remove a duplicate from appearing in the final files, hash out steps 3-5 and manually remove the duplicate from translation files
 
-ctgs, scfs, translation_hap1, translation_hap2, telo, gap, scfmap, paths, rDNA = translation_merge_table_plot.upload_files(verkkoDir, args.rDNA_fasta_fai, new_row, args.verkko_version)
+ctgs, scfs, translation_hap1, translation_hap2, telo, gap, scfmap, paths, rDNA = translation_merge_table_plot.upload_files(verkkoDir, args.rDNA_fasta_fai, new_row)
 
 print('combine scfmap and paths')
 scfmap_paths = pd.concat([scfmap, paths], axis=1).reset_index()
@@ -204,7 +203,7 @@ print('creating heatmap')
 tracker_dict = translation_merge_table_plot.contigPlot(translation_merged, args.phase_datatype, ctgs, scfs, verkkoDir, args.exp_chr_num)
 
 print('sum columns in merged file')
-df_summary = translation_merge_table_plot.summary_table(translation_merged, args.phase_datatype, tracker_dict, args.verkko_version)
+df_summary = translation_merge_table_plot.summary_table(translation_merged, args.phase_datatype, tracker_dict)
 df_summary.to_csv('chromosome_assignment/translation_merged_summary.tsv', sep='\t')
 
 

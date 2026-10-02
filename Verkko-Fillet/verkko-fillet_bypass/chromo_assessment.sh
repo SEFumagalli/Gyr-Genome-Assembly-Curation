@@ -57,7 +57,6 @@ main_dir="/90daydata/ruminant_t2t/Gyr/assembly"
 reference="/project/ruminant_t2t/existing_NCBI_references/Gyr/ARS-UCD2.0_chr.fasta"
 rDNA="/90daydata/ruminant_t2t/Gyr/assembly/verkko2.2.1_hifi-duplex_tporec/Cattle_rDNA.fasta"
 assembly_rDNA="/90daydata/ruminant_t2t/Gyr/verkko2.2.1_hifi-duplex_tporec/asssembly.cattle_rDNA.fasta"
-verkko_version='2.3.2'
 
 ##verkko PostASM Scripts below can be found at https://github.com/marbl/training/tree/main/part2-assemble/docker
 
@@ -99,8 +98,7 @@ if [ "trio_hic" = $datatype ]; then
     python3 verkko-fillet_bypass/chromo_assessment.py \
         --mashmap $assembly/mashmap_dam.out $assembly/mashmap_sire.out $assembly/mashmap_hap1.out $assembly/mashmap_hap2.out \
         --translation $assembly/translation_hap1_sorted $assembly/translation_hap2_sorted \
-        --num_chromosomes $chrnum \
-        --verkko_version $verkko_version
+        --num_chromosomes $chrnum
 
     rm $assembly/mashmap_hap1.out
     rm $assembly/mashmap_hap2.out
@@ -115,8 +113,7 @@ if [ "trio" = $datatype ]; then
     python3 verkko-fillet_bypass/chromo_assessment.py \
         --mashmap $assembly/mashmap_dam.out $assembly/mashmap_sire.out \
         --translation $assembly/translation_hap1_sorted $assembly/translation_hap2_sorted \
-        --num_chromosomes $chrnum \
-        --verkko_version $verkko_version
+        --num_chromosomes $chrnum
 
     rm $assembly/mashmap_dam.out
     rm $assembly/mashmap_sire.out
@@ -131,8 +128,7 @@ if [ "hic" = $datatype ]; then
     python3 verkko-fillet_bypass/chromo_assessment.py \
         --mashmap $assembly/mashmap_hap1.out $assembly/mashmap_hap2.out \
         --translation $assembly/translation_hap1_sorted $assembly/translation_hap2_sorted \
-        --num_chromosomes $chrnum \
-        --verkko_version $verkko_version
+        --num_chromosomes $chrnum
  
     rm $assembly/mashmap_hap1.out
     rm $assembly/mashmap_hap2.out
@@ -167,8 +163,7 @@ python3 verkko-fillet_bypass/translation_merge_table_plot.py \
     --verkkoDir $assembly_dir_path \
     --phase_datatype $datatype \
     --num_chromosomes $chrnum \
-    --rDNA_fasta_fai $rDNA_fai \
-    --verkko_version $verkko_version
+    --rDNA_fasta_fai $rDNA_fai
 
 
 date

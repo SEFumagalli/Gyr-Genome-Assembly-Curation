@@ -57,8 +57,7 @@ python3 run_verkko_fillet.py \
     --exp_chr_num 31 \
 	--gaps False \
 	--mashmap_id_threshold 95 \
-	--rDNA_fasta_fai $rDNA_fai \
-	--verkko_version 2.3.2
+	--rDNA_fasta_fai $rDNA_fai
 	#--new_row "$dict"	
 date
 

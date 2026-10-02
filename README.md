@@ -76,7 +76,7 @@ This repository contains **documentation**, **tutorials**, and **scripts** for p
         -*Bos taurus*
         - **[ARS-UCD2.0](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_002263795.3/)** 
             - Hereford
-            - diploid/haploid 
+            - haploid 
             - male 11 yrs
             - Dominette left lung
             - PacBio; Illumina NextSeq 500; Illumina HiSeq; Illumina GAII

@@ -16,7 +16,7 @@ parser=argparse.ArgumentParser()
 parser.add_argument("--mashmap", nargs="*", default=[])
 parser.add_argument("--translation", nargs="*", default=[])
 parser.add_argument("--num_chromosomes", help='number of chromosomes input')
-parser.add_argument("--verkko_version", type=str, help='verkko version')
+
 
 args = parser.parse_args()
 
@@ -573,21 +573,12 @@ if trio_hic:
 
 
 print('checking sex chromosome duplicates')
-if args.verkko_version == '2.3.2':
-    #if translation_hap2[0].str.contains('sire').any() and translation_hap1[0].str.contains('dam').any():
-    if translation_hap2[0].str.contains('dam').any() and translation_hap1[0].str.contains('sire').any():
-        print('checking sire/dam sex chromosomes')
-        translation_hap1, translation_hap2 = remove_sex_duplicates(translation_hap1, translation_hap2)
-    else:
-        print('checking hap1/hap2 sex chromosomes')
-        translation_hap1, translation_hap2 = fix_sex_chromosomes(translation_hap1, translation_hap2)
+if translation_hap2[0].str.contains('sire').any() and translation_hap1[0].str.contains('dam').any():
+    print('checking sire/dam sex chromosomes')
+    translation_hap1, translation_hap2 = remove_sex_duplicates(translation_hap1, translation_hap2)
 else:
-    if translation_hap2[0].str.contains('sire').any() and translation_hap1[0].str.contains('dam').any():
-        print('checking sire/dam sex chromosomes')
-        translation_hap1, translation_hap2 = remove_sex_duplicates(translation_hap1, translation_hap2)
-    else:
-        print('checking hap1/hap2 sex chromosomes')
-        translation_hap1, translation_hap2 = fix_sex_chromosomes(translation_hap1, translation_hap2)
+    print('checking hap1/hap2 sex chromosomes')
+    translation_hap1, translation_hap2 = fix_sex_chromosomes(translation_hap1, translation_hap2)
 
 
 translation_hap1.to_csv('translation_hap1.csv', sep="\t", header=False, index=False)

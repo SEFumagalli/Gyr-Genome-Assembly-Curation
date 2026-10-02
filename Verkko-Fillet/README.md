@@ -20,11 +20,15 @@ All scripts are formatted for use on the Ceres cluster at the USDA.
 
     This document gives step-by-step instructions on some code modifications and implimentation of in-house scripts.
     
-    This includes placing new code in **getChrNames.sh** and adding the file **chromo_assessment.py**: 
+    This includes placing new code in **_chrAssign.py** and **getChrNames.sh** and adding the file **chromo_assessment.py**: 
     
         ~/.conda/envs/verkko-fillet/lib/python3.9/site-packages/verkkofillet/bin/getChrNames.sh
     
         ~/.conda/envs/verkko-fillet/lib/python3.9/site-packages/verkkofillet/tools/chromo_assessment.py
+        
+        ~/.conda/envs/verkko-fillet/lib/python3.9/site-packages/verkkofillet/tools/_chrAssign.py
+        
+        These files are also listed in the Verkko-Fillet directory for reference. 
         
     Make sure **translation_merge_table_plot.py** is in the same folder as **run_verkko_fillet.py**.
     
