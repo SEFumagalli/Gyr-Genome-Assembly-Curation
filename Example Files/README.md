@@ -5,8 +5,7 @@
 ### **Outputs of Verkko-Fillet and my additional scripts**
 
 `contigPlot.png`
-
-    - Heatmap figure depicting whether a chromosome consists of a contig, scaffold, gaps, and telomeres for both haplotypes
+    Heatmap figure depicting whether a chromosome consists of a contig, scaffold, gaps, and telomeres for both haplotypes
  
 `rDNA_utigs_ids_Bandage.txt`
 
