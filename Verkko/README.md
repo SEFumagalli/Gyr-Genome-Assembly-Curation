@@ -118,19 +118,19 @@ After fixing tangles, rDNA, and telomeres, use relaunch_Gyr_verkko.sh.
 
     4. mkdir 6-layoutContigs --> make sure these are the updated files with the alignments and tangle corrections
         - cd 6-layoutContigs
-        - ln -s ../../verkko2.3.2_hifi-duplex_trio/final/combined-nodemap.txt
-        	- ln -s ../../verkko2.3.2_hifi-duplex_trio/final/combined-edges.gfa
-        	- ln -s ../../verkko2.3.2_hifi-duplex_trio/final/combined-alignments.gaf
-        	- ln -s ../../verkko2.3.2_hifi-duplex_trio/final/nodelens.txt
-        	- ln -s ../../verkko2.3.2_hifi-duplex_trio/final/unitig-popped.layout
-        - ln -s ../../verkko2.3.2_hifi-duplex_trio/final/unitig-popped.layout.scfmap
-        - cd ..
+        - cp ../../verkko2.3.2_hifi-duplex_trio/final/combined-nodemap.txt .
+        	- cp ../../verkko2.3.2_hifi-duplex_trio/final/combined-edges.gfa .
+        	- cp ../../verkko2.3.2_hifi-duplex_trio/final/combined-alignments.gaf .
+        	- cp ../../verkko2.3.2_hifi-duplex_trio/final/nodelens.txt .
+        	- cp ../../verkko2.3.2_hifi-duplex_trio/final/unitig-popped.layout .
+        	- cp ../../verkko2.3.2_hifi-duplex_trio/final/unitig-popped.layout.scfmap .
+        	- cd ..
 	
 	5. mkdir 7-consensus  --> make sure these are the updated files with the alignments and tangle corrections
         	- cd 7-consensus
         	- ln -s ../../verkko2.3.2_hifi-duplex_trio/final/ont_subset.id
         	- ln -s ../../verkko2.3.2_hifi-duplex_trio/final/ont_subset.fasta.gz
-        - cd ..
+        	- cd ..
         
     6. Launch rerun
     
