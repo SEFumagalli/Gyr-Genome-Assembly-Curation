@@ -98,8 +98,7 @@ After fixing tangles, rDNA, and telomeres, use relaunch_Gyr_verkko.sh.
     
     1. mkdir verkko2.3.2_hifi-duplex_trio_final_asm
 
-    2. Symlink files from HiFi-Duplex/ONT-UL/Trio/Pore-C
-        - ln -s ../verkko2.3.2_hifi-duplex_trio/0-correction/
+    2. Symlink files from HiFi-Duplex/ONT-UL/Trio
         - ln -s ../verkko2.3.2_hifi-duplex_trio/1-buildGraph/
         	- ln -s ../verkko2.3.2_hifi-duplex_trio/2-processGraph/
         	- ln -s ../verkko2.3.2_hifi-duplex_trio/3-align/
