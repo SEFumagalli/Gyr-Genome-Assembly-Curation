@@ -1,5 +1,7 @@
 #!/bin/bash -l
 
+#created by Sarah E. Fumagalli
+
 #SBATCH --job-name=hapmer_2_chr
 #SBATCH --cpus-per-task=4
 #SBATCH --ntasks=1
@@ -17,7 +19,7 @@
 date
 
 #make translation file from verkko-fillet translation_merged.tsv
-cut -f1,2 ../../verkko2.2.1_hifi-duplex_tporec_verkko_fillet-original/chromosome_assignment/translation_merged.tsv > hapmer_chr.tsv
+cut -f1,2 ../../verkko2.2.1_hifi-duplex_tporec_verkko_fillet/chromosome_assignment/translation_merged.tsv > hapmer_chr.tsv
 
 
 #remove rows that are associated with empty second column and the header row

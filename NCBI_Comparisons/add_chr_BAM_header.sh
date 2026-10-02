@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#created by Sarah E. Fumagalli
+
 #SBATCH --job-name=add_chr_BAM_header
 #SBATCH --error=add_chr_BAM_header__%j.err
 #SBATCH --output=add_chr_BAM_header__%j.std
@@ -31,12 +33,11 @@ samtools reheader old_header.sam GCF_029378745.1_NIAB-ARS_B.indTharparkar_mat_pr
 echo "index updated BAM file"
 samtools index GCF_029378745.1_NIAB-ARS_B.indTharparkar_mat_pri_1.0_modelrefseq_alns.chr.labeled.bam
 
-#echo "remove all contigs not associated with chromosome"
-#samtools view -h GCF_029378745.1_NIAB-ARS_B.indTharparkar_mat_pri_1.0_modelrefseq_alns.chr.labeled.bam \                                                                                                                                                                          | awk '{if($0 ~ /^@SQ/ && $2 !~ /chr/) next; else if($0 !~ /^@/ && $3 !~ /chr/) next; else print }' \
-#| samtools view -b - > GCF_029378745.1_NIAB-ARS_B.indTharparkar_mat_pri_1.0_modelrefseq_alns.chr_only.bam
+echo "remove all contigs not associated with chromosome"
+samtools view -h GCF_029378745.1_NIAB-ARS_B.indTharparkar_mat_pri_1.0_modelrefseq_alns.chr.labeled.bam \                                                                                                                                                                          | awk '{if($0 ~ /^@SQ/ && $2 !~ /chr/) next; else if($0 !~ /^@/ && $3 !~ /chr/) next; else print }' | samtools view -b - > GCF_029378745.1_NIAB-ARS_B.indTharparkar_mat_pri_1.0_modelrefseq_alns.chr_only.bam
 
-#echo "index updated BAM file"
-#samtools index GCF_029378745.1_NIAB-ARS_B.indTharparkar_mat_pri_1.0_modelrefseq_alns.chr_only.bam
+echo "index updated BAM file"
+samtools index GCF_029378745.1_NIAB-ARS_B.indTharparkar_mat_pri_1.0_modelrefseq_alns.chr_only.bam
 
 
 date

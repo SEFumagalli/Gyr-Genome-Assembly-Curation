@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#created by Sarah E. Fumagalli
+
 #SBATCH --job-name=bam2cov-flagger
 #SBATCH --error=logs/bam2cov-flagger__%A_%a.err
 #SBATCH --output=logs/bam2cov-flagger__%A_%a.std
@@ -25,25 +27,22 @@ samples=(
          "NIAB-ARS_B.indTharparkar_mat_pri_1.0"
          "ARS-UCD2.0"
          "UOA_Angus_1"
-	 "uncurated2.2.1_hap1_hifi-duplex_ont"
 )
 
 # Corresponding BAM file paths
 bam_files=(  
-            "/90daydata/ruminant_t2t/Gyr/assembly/verkko2.2.1_hifi-duplex_tporec/9-post_assembly_analysis/Winnowmap/UOA_Brahman_1/assembly_filtered.bam"
-            "/90daydata/ruminant_t2t/Gyr/assembly/verkko2.2.1_hifi-duplex_tporec/9-post_assembly_analysis/Winnowmap/NIAB-ARS_B.indTharparkar_mat_pri_1.0/assembly_filtered.bam"
-            "/90daydata/ruminant_t2t/Gyr/assembly/verkko2.2.1_hifi-duplex_tporec/9-post_assembly_analysis/Winnowmap/ARS-UCD2.0/assembly_filtered.bam"
-            "/90daydata/ruminant_t2t/Gyr/assembly/verkko2.2.1_hifi-duplex_tporec/9-post_assembly_analysis/Winnowmap/UOA_Angus_1/assembly_filtered.bam" 
-	    "/90daydata/ruminant_t2t/Gyr/assembly/verkko2.2.1_hifi-duplex_tporec/9-post_assembly_analysis/Winnowmap/uncurated2.2.1_hap1_hifi-duplex_ont/assembly_filtered.bam"
+            "../Winnowmap/UOA_Brahman_1/assembly_filtered.bam"
+            "../Winnowmap/NIAB-ARS_B.indTharparkar_mat_pri_1.0/assembly_filtered.bam"
+            "../Winnowmap/ARS-UCD2.0/assembly_filtered.bam"
+            "../Winnowmap/UOA_Angus_1/assembly_filtered.bam"
 )
 
 # Annotation file paths
 anno_files=(
-	    "/90daydata/ruminant_t2t/Gyr/assembly/ref_assemblies/UOA_Brahman_1/annotations_path.json"
-	    "/90daydata/ruminant_t2t/Gyr/assembly/ref_assemblies/NIAB-ARS_B.indTharparkar_mat_pri_1.0/annotations_path.json"
-	    "/90daydata/ruminant_t2t/Gyr/assembly/ref_assemblies/ARS-UCD2.0/annotations_path.json"
-	    "/90daydata/ruminant_t2t/Gyr/assembly/ref_assemblies/UOA_Angus_1/annotations_path.json"
-	    "/90daydata/ruminant_t2t/Gyr/assembly/verkko2.2.1_hifi-duplex_tporec/9-post_assembly_analysis/uncurated2.2.1/hap1/annotations_path.json"
+	    "../ref_assemblies/UOA_Brahman_1/annotations_path.json"
+	    "../ref_assemblies/NIAB-ARS_B.indTharparkar_mat_pri_1.0/annotations_path.json"
+	    "../ref_assemblies/ARS-UCD2.0/annotations_path.json"
+	    "../ref_assemblies/UOA_Angus_1/annotations_path.json"
 )
 
 # Pick correct sample for this SLURM_ARRAY_TASK_ID

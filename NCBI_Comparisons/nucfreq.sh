@@ -1,5 +1,7 @@
 #!/bin/bash -l
 
+#created by Sarah E. Fumagalli
+
 #SBATCH --job-name=nucfreq
 #SBATCH --cpus-per-task=96
 #SBATCH --ntasks=1
@@ -27,31 +29,31 @@ mkdir -p logs
 # Array of sample names
 samples=(
         "UOA_Brahman_1"
-	"UOA_Brahman_1"
-	"UOA_Brahman_1"
+        	"UOA_Brahman_1"
+        	"UOA_Brahman_1"
         "NIAB-ARS_B.indTharparkar_mat_pri_1.0"
-	"NIAB-ARS_B.indTharparkar_mat_pri_1.0"
-	"NIAB-ARS_B.indTharparkar_mat_pri_1.0"
+        	"NIAB-ARS_B.indTharparkar_mat_pri_1.0"
+        	"NIAB-ARS_B.indTharparkar_mat_pri_1.0"
         "ARS-UCD2.0"
-	"ARS-UCD2.0"
-	"ARS-UCD2.0"
+        	"ARS-UCD2.0"
+        	"ARS-UCD2.0"
         "UOA_Angus_1"
-	"UOA_Angus_1"
-	"UOA_Angus_1"
+        	"UOA_Angus_1"
+        	"UOA_Angus_1"
 )
 
 # Corresponding BAM file paths
 bam_files=(
-	"UOA_Brahman_1_chr4_only.bam"
+        	"UOA_Brahman_1_chr4_only.bam"
         "UOA_Brahman_1_chr6_only.bam"
         "UOA_Brahman_1_chr14_only.bam"
-	"NIAB-ARS_B.indTharparkar_mat_pri_1.0_chr4_only.bam"
+        	"NIAB-ARS_B.indTharparkar_mat_pri_1.0_chr4_only.bam"
         "NIAB-ARS_B.indTharparkar_mat_pri_1.0_chr6_only.bam"
         "NIAB-ARS_B.indTharparkar_mat_pri_1.0_chr14_only.bam"
         "ARS-UCD2.0_chr4_only.bam"
         "ARS-UCD2.0_chr6_only.bam"
         "ARS-UCD2.0_chr14_only.bam"
-	"UOA_Angus_1_chr4_only.bam"
+        	"UOA_Angus_1_chr4_only.bam"
         "UOA_Angus_1_chr6_only.bam"
         "UOA_Angus_1_chr14_only.bam"
 )
@@ -59,16 +61,16 @@ bam_files=(
 
 # Corresponding BED file paths
 bed_files=(
-        "GCF_003369695.1_UOA_Brahman_1_genomic.chr4_only.bed"
+    "GCF_003369695.1_UOA_Brahman_1_genomic.chr4_only.bed"
 	"GCF_003369695.1_UOA_Brahman_1_genomic.chr6_only.bed"
 	"GCF_003369695.1_UOA_Brahman_1_genomic.chr14_only.bed"
-        "GCF_029378745.1_NIAB-ARS_B.indTharparkar_mat_pri_1.0_genomic.chr4_only.bed"
+    "GCF_029378745.1_NIAB-ARS_B.indTharparkar_mat_pri_1.0_genomic.chr4_only.bed"
 	"GCF_029378745.1_NIAB-ARS_B.indTharparkar_mat_pri_1.0_genomic.chr6_only.bed"
 	"GCF_029378745.1_NIAB-ARS_B.indTharparkar_mat_pri_1.0_genomic.chr14_only.bed"
-        "ARS-UCD2.0_chr4_only.bed"
+    "ARS-UCD2.0_chr4_only.bed"
 	"ARS-UCD2.0_chr6_only.bed"
 	"ARS-UCD2.0_chr14_only.bed"
-        "GCA_003369685.2_UOA_Angus_1_genomic.chr4_only.bed"
+    "GCA_003369685.2_UOA_Angus_1_genomic.chr4_only.bed"
 	"GCA_003369685.2_UOA_Angus_1_genomic.chr6_only.bed"
 	"GCA_003369685.2_UOA_Angus_1_genomic.chr14_only.bed"
 )
@@ -80,14 +82,14 @@ out_png=(
 	"nucfreq_chr6.png"
 	"nucfreq_chr14.png"
 	"nucfreq_chr4.png"
-        "nucfreq_chr6.png"
-        "nucfreq_chr14.png"
+    "nucfreq_chr6.png"
+    "nucfreq_chr14.png"
 	"nucfreq_chr4.png"
-        "nucfreq_chr6.png"
-        "nucfreq_chr14.png"
+    "nucfreq_chr6.png"
+    "nucfreq_chr14.png"
 	"nucfreq_chr4.png"
-        "nucfreq_chr6.png"
-        "nucfreq_chr14.png"
+    "nucfreq_chr6.png"
+    "nucfreq_chr14.png"
 )
 
 # BED Outfile
@@ -96,14 +98,14 @@ out_bed=(
 	"nucfreq_chr6.obed"
 	"nucfreq_chr14.obed"
 	"nucfreq_chr4.obed"
-        "nucfreq_chr6.obed"
-        "nucfreq_chr14.obed"
+    "nucfreq_chr6.obed"
+    "nucfreq_chr14.obed"
 	"nucfreq_chr4.obed"
-        "nucfreq_chr6.obed"
-        "nucfreq_chr14.obed"
+    "nucfreq_chr6.obed"
+    "nucfreq_chr14.obed"
 	"nucfreq_chr4.obed"
-        "nucfreq_chr6.obed"
-        "nucfreq_chr14.obed"
+    "nucfreq_chr6.obed"
+    "nucfreq_chr14.obed"
 )
 
 
@@ -127,7 +129,7 @@ echo "Using OBED: $obed"
 cd ${sample}
 
 
-python3 /project/cattle_genome_assemblies/packages/NucFreq/NucPlot.py --bed ${bed} ${bam} ${opng} --threads 96 --height 8 --width 10 --dpi 300 --obed ${obed}
+python3 NucPlot.py --bed ${bed} ${bam} ${opng} --threads 96 --height 8 --width 10 --dpi 300 --obed ${obed}
 
 cd ..
 

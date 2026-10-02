@@ -1,3 +1,5 @@
+#created by Sarah E. Fumagalli
+
 import argparse
 from Bio import SeqIO
 

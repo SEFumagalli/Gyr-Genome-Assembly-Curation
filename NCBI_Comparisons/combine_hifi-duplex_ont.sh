@@ -1,5 +1,7 @@
 #!/bin/bash -l
 
+#created by Sarah E. Fumagalli
+
 #SBATCH --job-name=combine_hifi-duplex_ont
 #SBATCH --cpus-per-task=250
 #SBATCH --ntasks=1
@@ -16,14 +18,14 @@ date
 
 module load samtools
 
-#mkdir -p logs
+mkdir -p logs
 
 echo "Create and enter directory"
 mkdir -p uncurated2.2.1_hap1_hifi-duplex_ont
 cd uncurated2.2.1_hap1_hifi-duplex_ont
 
 echo "Join HiFi-Duplex and ONT" 
-samtools merge -o assembly.bam ../uncurated2.2.1_hap1_ont/assembly_filtered.bam ../uncurated2.2.1_hap1_hifi-duplex/assembly_filtered.bam
+samtools merge -o assembly.bam assembly_ont_filtered.bam assembly_hifi-duplex_filtered.bam
 
 echo "Resort and index"
 samtools sort -@ 250 -o assembly.sorted.bam assembly.bam

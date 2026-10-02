@@ -1,5 +1,7 @@
 #!/bin/bash -l
 
+#created by Sarah E. Fumagalli
+
 #SBATCH --job-name=chromosome_map
 #SBATCH --cpus-per-task=1
 #SBATCH --ntasks=1
@@ -28,8 +30,17 @@ date
 ###    If you already have these files downloaded, hash out out the lines below and run 2) or 3)
 
 echo "downloading reference fasta"
-reference_path=https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/024/291/935/GCA_024291935.2_TBG_Okapi_asm_v1/GCA_024291935.2_TBG_Okapi_asm_v1_genomic.fna.gz
-report_path=https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/024/291/935/GCA_024291935.2_TBG_Okapi_asm_v1/GCA_024291935.2_TBG_Okapi_asm_v1_assembly_report.txt
+reference_path=https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/002/263/795/GCF_002263795.3_ARS-UCD2.0/GCF_002263795.3_ARS-UCD2.0_genomic.fna.gz
+report_path=https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/002/263/795/GCF_002263795.3_ARS-UCD2.0/GCF_002263795.3_ARS-UCD2.0_assembly_report.txt
+
+#reference_path=https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/003/369/695/GCF_003369695.1_UOA_Brahman_1/GCF_003369695.1_UOA_Brahman_1_genomic.fna.gz 
+#report_path=https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/003/369/695/GCF_003369695.1_UOA_Brahman_1/GCF_003369695.1_UOA_Brahman_1_assembly_report.txt
+
+#reference_path=https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/369/685/GCA_003369685.2_UOA_Angus_1/GCA_003369685.2_UOA_Angus_1_genomic.fna.gz
+#report_path=https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/003/369/685/GCA_003369685.2_UOA_Angus_1/GCA_003369685.2_UOA_Angus_1_assembly_report.txt
+
+#reference_path=https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/029/378/745/GCF_029378745.1_NIAB-ARS_B.indTharparkar_mat_pri_1.0/GCF_029378745.1_NIAB-ARS_B.indTharparkar_mat_pri_1.0_genomic.fna.gz
+#report_path=https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/029/378/745/GCF_029378745.1_NIAB-ARS_B.indTharparkar_mat_pri_1.0/GCF_029378745.1_NIAB-ARS_B.indTharparkar_mat_pri_1.0_assembly_report.txt
 
 wget $reference_path
 wget $report_path
@@ -177,7 +188,7 @@ if [ -z "$sequence_report" ]; then
 else	
 	#create chromosome.map using sequence_report.tsv and reference.fna.fai
 	echo "using sequence_report.tsv to create chromosome.map"
-	python3 /project/cattle_genome_assemblies/config_files_scripts/Sarah_scripts/create_chromosome_map.py --reference_ids $reference_ids --sequence_report $sequence_report
+	python3 create_chromosome_map.py --reference_ids $reference_ids --sequence_report $sequence_report
 	map_file='chromosome.map'
 fi
 
@@ -188,7 +199,7 @@ if [ -z "$map_file" ]; then
 else
 	#update reference.fna with chromosome names
 	echo "using map_file to updated reference.fna with chromosome names"
-	python3 /project/cattle_genome_assemblies/config_files_scripts/Sarah_scripts/add_chr_reference.py --chromosome_map $map_file --reference $reference
+	python3 add_chr_reference.py --chromosome_map $map_file --reference $reference
 fi
 
 #update reference.fna.fai with chromosome names

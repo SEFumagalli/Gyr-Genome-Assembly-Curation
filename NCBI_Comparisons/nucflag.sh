@@ -1,5 +1,7 @@
 #!/bin/bash -l
 
+#created by Sarah E. Fumagalli
+
 #SBATCH --job-name=nucflag
 #SBATCH --cpus-per-task=96
 #SBATCH --ntasks=1
@@ -21,16 +23,14 @@ mkdir -p logs
 
 # Array of sample names
 samples=(
-        "uncurated2.2.1_hap1_hifi-duplex_ont"
      	"UOA_Brahman_1"
-    	"NIAB-ARS_B.indTharparkar_mat_pri_1.0"
+        	"NIAB-ARS_B.indTharparkar_mat_pri_1.0"
      	"ARS-UCD2.0"
      	"UOA_Angus_1"
 )
 
 # Corresponding BAM file paths
 bam_files=( 
-	"../Winnowmap/uncurated2.2.1_hap1_hifi-duplex_ont/assembly_filtered.bam"
 	"../Winnowmap/UOA_Brahman_1/assembly_filtered.bam"
 	"../Winnowmap/NIAB-ARS_B.indTharparkar_mat_pri_1.0/assembly_filtered.bam"
 	"../Winnowmap/ARS-UCD2.0/assembly_filtered.bam"
@@ -40,7 +40,6 @@ bam_files=(
 
 # Corresponding BED file paths
 bed_files=(
-	"../uncurated2.2.1/hap1/assembly-hap1_chr_only.bed"
         "../../../ref_assemblies/UOA_Brahman_1/GCF_003369695.1_UOA_Brahman_1_genomic.chr_only.bed"
         "../../../ref_assemblies/NIAB-ARS_B.indTharparkar_mat_pri_1.0/GCF_029378745.1_NIAB-ARS_B.indTharparkar_mat_pri_1.0_genomic.chr_only.bed"
         "../../../ref_assemblies/ARS-UCD2.0/ARS-UCD2.0_chr_only.bed"
@@ -60,8 +59,6 @@ echo "Using BED: $bed"
 
 # Run nucflag
 nucflag -i ${bam} -b ${bed} -d ${sample}
-
-
 
 
 date

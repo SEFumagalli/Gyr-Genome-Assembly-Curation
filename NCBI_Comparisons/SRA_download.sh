@@ -1,5 +1,7 @@
 #!/bin/bash -l
 
+#created by Sarah E. Fumagalli
+
 #SBATCH --job-name=SRA_download
 #SBATCH --cpus-per-task=4
 #SBATCH --ntasks=1
