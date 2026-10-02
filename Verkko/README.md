@@ -3,7 +3,7 @@
 ---
 
 
-Find Verkko here **[Verkko](https://github.com/marbl/verkko)**
+Find **[Verkko](https://github.com/marbl/verkko)** here
 
 All scripts are formatted for use on the Ceres cluster at the USDA.
 
