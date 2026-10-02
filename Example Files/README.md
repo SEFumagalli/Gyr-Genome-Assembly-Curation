@@ -8,7 +8,6 @@
     Heatmap figure depicting whether a chromosome consists of a contig, scaffold, gaps, and telomeres for both haplotypes
  
 `rDNA_utigs_ids_Bandage.txt`
-
      - List of utigs associated with rDNA that can be copied and paste into Bandage for visualization
          
 `translation_merged.tsv`
