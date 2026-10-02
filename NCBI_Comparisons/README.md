@@ -7,7 +7,7 @@
     
     - Run Verkko-Fillet with my modifications - see Verkko-Fillet directory
     
-    - Run 'convert_hapmers_2_chr.sh'
+    - Run `convert_hapmers_2_chr.sh`
     
         This script creates a new assembly.fasta that renames hapmers to include chromosomes.
         
@@ -22,7 +22,7 @@
             - assembly_chr.fasta
             - assembly_chr.fasta.fai
             
-    - Run 'filter_chr_fasta.py'
+    - Run `filter_chr_fasta.py`
     
         This script creates a new assembly.fasta with only chromosome assigned hapmers.
         
@@ -41,18 +41,18 @@
 
 2. **Download NCBI references and filter for chromosome-associated contigs**
 
-    - Run 'create_chrmap_update_ref.sh'
+    - Run `create_chrmap_update_ref.sh`
     
         This script grabs the reference NCBI files, creates a chromosome map, and converts contig names to include chromosome
         
         - Called sub-scripts:
-            - 'create_chromosome_map.py'
+            - `create_chromosome_map.py`
             
                 - Python env: 
                     import pandas as pd
                     import argparse
             
-            - 'add_chr_reference.py'
+            - `add_chr_reference.py`
             
                 - Python env: 
                     import pandas as pd
@@ -96,7 +96,7 @@
         
 4. **Download UOA_Angus_1 HiFi data for the creation of a BAM file**
 
-    - Run 'SRA_download.sh'
+    - Run `SRA_download.sh`
     
         This script downloads all the PacBio runs, converts to fastq, trims and filters, then combines all data into single fastq.
     
@@ -123,7 +123,7 @@
     
 6. **Completeness assessment**
 
-    - Run 'busco.sh'
+    - Run `busco.sh`
     
     - Input: 
         - assembly_chr.fasta
@@ -149,7 +149,7 @@
 
     NIAB-ARS_B.indTharparkar_mat_pri_1.0 BAM file is available on NCBI.
 
-    - Run 'add_chr_BAM_header.sh'
+    - Run `add_chr_BAM_header.sh`
     
         This script modifies a BAM file so the chromosome names are included. 
         
@@ -171,7 +171,7 @@
             
     Generated BAM file for UOA_Brahman_1, UOA_Angus_1, ARS-UCD2.0, and Gyr assembly. 
     
-    - Run 'meryl_winnowmap_filter.sh'
+    - Run `meryl_winnowmap_filter.sh`
     
         This script uses Meryl to build a k-mer database and counts, then uses Winnowmap to align the assembly to the reads. 
         
@@ -197,7 +197,7 @@
     
 9. **Combine HiFi, Duplex, and ONT UL Winnowmap results for Gyr assembly**
 
-    - Run 'combine_hifi-duplex_ont.sh'
+    - Run `combine_hifi-duplex_ont.sh`
     
         This script merges multiple BAM files, resorts, and indexes
         
@@ -244,7 +244,3 @@
     samtools faidx assembly.chr4_only.fna
     samtools faidx assembly.chr6_only.fna
     samtools faidx assembly.chr14_only.fna
-    
-    
-    
-12. 
