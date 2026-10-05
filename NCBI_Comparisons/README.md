@@ -78,20 +78,20 @@
 
 3. **Download NCBI references BAM files**     
 
-    UOA_Brahman_1
-        wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/003/369/695/GCF_003369695.1_UOA_Brahman_1/RefSeq_transcripts_alignments/GCF_003369695.1_Bos_hybrid_MaternalHap_v2.0_modelrefseq_alns.bam
-        wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/003/369/695/GCF_003369695.1_UOA_Brahman_1/RefSeq_transcripts_alignments/GCF_003369695.1_Bos_hybrid_MaternalHap_v2.0_modelrefseq_alns.bam.bai
+    - UOA_Brahman_1
+        - wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/003/369/695/GCF_003369695.1_UOA_Brahman_1/RefSeq_transcripts_alignments/GCF_003369695.1_Bos_hybrid_MaternalHap_v2.0_modelrefseq_alns.bam
+        - wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/003/369/695/GCF_003369695.1_UOA_Brahman_1/RefSeq_transcripts_alignments/GCF_003369695.1_Bos_hybrid_MaternalHap_v2.0_modelrefseq_alns.bam.bai
 
-    NIAB-ARS_B.indTharparkar_mat_pri_1.0
-        wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/029/378/745/GCF_029378745.1_NIAB-ARS_B.indTharparkar_mat_pri_1.0/RefSeq_transcripts_alignments/GCF_029378745.1_NIAB-ARS_B.indTharparkar_mat_pri_1.0_modelrefseq_alns.bam
-        wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/029/378/745/GCF_029378745.1_NIAB-ARS_B.indTharparkar_mat_pri_1.0/RefSeq_transcripts_alignments/GCF_029378745.1_NIAB-ARS_B.indTharparkar_mat_pri_1.0_modelrefseq_alns.bam.bai
+    - NIAB-ARS_B.indTharparkar_mat_pri_1.0
+        - wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/029/378/745/GCF_029378745.1_NIAB-ARS_B.indTharparkar_mat_pri_1.0/RefSeq_transcripts_alignments/GCF_029378745.1_NIAB-ARS_B.indTharparkar_mat_pri_1.0_modelrefseq_alns.bam
+        - wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/029/378/745/GCF_029378745.1_NIAB-ARS_B.indTharparkar_mat_pri_1.0/RefSeq_transcripts_alignments/GCF_029378745.1_NIAB-ARS_B.indTharparkar_mat_pri_1.0_modelrefseq_alns.bam.bai
 
-    ARS-UCD2.0
-        wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/002/263/795/GCF_002263795.3_ARS-UCD2.0/RefSeq_transcripts_alignments/GCF_002263795.3_ARS-UCD2.0_knownrefseq_alns.bam
-        wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/002/263/795/GCF_002263795.3_ARS-UCD2.0/RefSeq_transcripts_alignments/GCF_002263795.3_ARS-UCD2.0_knownrefseq_alns.bam.bai
+    - ARS-UCD2.0
+        - wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/002/263/795/GCF_002263795.3_ARS-UCD2.0/RefSeq_transcripts_alignments/GCF_002263795.3_ARS-UCD2.0_knownrefseq_alns.bam
+        - wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/002/263/795/GCF_002263795.3_ARS-UCD2.0/RefSeq_transcripts_alignments/GCF_002263795.3_ARS-UCD2.0_knownrefseq_alns.bam.bai
 
-    UOA_Angus_1
-        No BAM files to download
+    - UOA_Angus_1
+        - No BAM files to download
         
         
 4. **Download UOA_Angus_1 HiFi data for the creation of a BAM file**
