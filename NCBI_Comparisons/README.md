@@ -11,8 +11,8 @@
     
         This script creates a new assembly.fasta that renames hapmers to include chromosomes.
         
-        - Tools: 
-            - seqkit
+        - Tool: 
+            - **[SeqKit](https://bioinf.shenwei.me/seqkit/)**
         
         - Input: 
             - verkko-fillet_assembly/chromosome_assignment/translation_merged.tsv  --> see Example_Files 
@@ -34,7 +34,7 @@
             - assembly_chr.fasta
             - name of output file
             
-        -Output:    
+        - Output:    
             - filtered_assembly_chr.fasta
             
             
@@ -59,8 +59,8 @@
                     import argparse
                     from Bio import SeqIO
         
-        - Tools: 
-            - seqkit
+        - Tool: 
+            - **[SeqKit](https://bioinf.shenwei.me/seqkit/)**
         
         - Input: 
             - NCBI path (example: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/003/369/695/GCF_003369695.1_UOA_Brahman_1/GCF_003369695.1_UOA_Brahman_1_genomic.fna.gz)
@@ -100,9 +100,9 @@
     
         This script downloads all the PacBio runs, converts to fastq, trims and filters, then combines all data into single fastq.
     
-        - Tools:
-            -sratoolkit
-    
+        - Tool:
+            - **[SRA Toolkit](https://github.com/ncbi/sra-tools/wiki/01.-Downloading-SRA-Toolkit)**
+            
         - Input: 
             - NCBI project accession
             
@@ -114,9 +114,11 @@
     
     For all NCBI references
 
-    - Tool: seqkit
+    - Tool: 
+        - **[SeqKit](https://bioinf.shenwei.me/seqkit/)**
     
     awk '/^>/{keep = ($0 ~ /_chr_/)} keep' assembly.fasta > assembly_chr_only.fasta
+    
     seqkit faidx assembly_chr_only.fasta
 
     
@@ -124,6 +126,9 @@
 6. **Completeness assessment**
 
     - Run `busco.sh`
+    
+    - Tool:
+        - **[BUSCO](https://busco.ezlab.org/busco_userguide.html#getting-started)**
     
     - Input: 
         - assembly_chr.fasta
@@ -153,8 +158,8 @@
     
         This script modifies a BAM file so the chromosome names are included. 
         
-        - Tools:
-            samtools
+        - Tool:
+            - **[Samtools](https://www.htslib.org/)**
             
         - Input: 
             - BED file 
@@ -176,7 +181,9 @@
         This script uses Meryl to build a k-mer database and counts, then uses Winnowmap to align the assembly to the reads. 
         
         - Tools: 
-            samtools
+            - **[Samtools](https://www.htslib.org/)**
+            - **[meryl](https://github.com/marbl/meryl)**
+            - **[Winnowmap](https://github.com/marbl/Winnowmap)**
             
         - Python env:
             verkko
@@ -201,9 +208,9 @@
     
         This script merges multiple BAM files, resorts, and indexes
         
-        - Tools:
-            samtools
-        
+        - Tool:
+            - **[Samtools](https://www.htslib.org/)**
+                   
         - Input: 
             - hifi-duplex/assembly_filtered.bam
             - ont/assembly_filtered.bam
@@ -217,7 +224,8 @@
 
     For all NCBI references and Gyr assembly
     
-    - Tool: samtools
+    - Tool:
+        - **[Samtools](https://www.htslib.org/)**
 
     samtools view -b assembly_filtered.bam "chr_4" > assembly_chr4_only.bam
     samtools view -b assembly_filtered.bam "chr_6" > assembly_chr6_only.bam
@@ -253,6 +261,9 @@
     
         This script reports several types of mis-assemblies - erroneous, duplicated, haploid, and collapsed
         
+        - Tool:
+            - **[HMM-Flagger](https://github.com/mobinasri/flagger/)**
+        
         - Input: 
             - assembly_filtered.bam
             - annotations_path.json
@@ -266,6 +277,9 @@
     
         This script creates nuclotide frequency plots and includes mis-assembly info
         
+        - Tool: 
+            - **[NucFlag](https://github.com/logsdon-lab/NucFlag)**
+        
         - Input: 
             - assembly_filtered.bam
             - assembly_chr.bed
@@ -278,6 +292,9 @@
     - Run `nucfreq.sh`
     
         This script creates read depth plots and BED files
+        
+        - Tool: 
+            - **[NucFreq](https://github.com/vollgerlab/NucFreq)**
         
         - Input: 
             - assembly_filtered.bam
@@ -295,6 +312,9 @@
     
         This script identifies the number of elements (LINEs, SINEs, LTRs, DNA, unclassified, interspersed, small RNA, satellites, simple repeats, and low complexity)
         
+        - Tool: 
+            - **[RepeatMasker](https://github.com/Dfam-consortium/RepeatMasker/)**
+        
         - Input:
             - assembly_chr.fasta
             - ~/RepeatMasker_4.0.6_lib/CONS-20160829/bos_taurus
@@ -309,6 +329,9 @@
     - Run `moddotplot.sh`
     
         This script creates dot plot figures comparing each NCBI reference to the Gyr assembly
+        
+        - Tool: 
+            - **[ModDotPlot](https://github.com/marbl/ModDotPlot)**
         
         - Input: 
             - NCBI_assembly.fasta

@@ -232,7 +232,7 @@ mkdir $patch_dir && cd $patch_dir
                 - if a conkord run results in this error, try reducing the w_size (window size).
 
             
-            python3 conkord.py --no_uniq -k 31 -bed <bed_file> -f <fasta_file> -r <illumina_data> \
+            python3 conkord.py --no_uniq -k 31 -bed <bed_file> -f <fasta_file> -r <read_data> \
                 -g <assembly.haplotype.fasta> -w_size <window_size> -t <thread_count> --cluster --gzip
 
             
