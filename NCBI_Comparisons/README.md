@@ -27,8 +27,8 @@
         This script creates a new assembly.fasta with only chromosome assigned hapmers.
         
         - Python env:
-            import argparse
-            from Bio import SeqIO
+            - import argparse
+            - from Bio import SeqIO
         
         - Input: 
             - assembly_chr.fasta
@@ -49,15 +49,15 @@
             - `create_chromosome_map.py`
             
                 - Python env: 
-                    import pandas as pd
-                    import argparse
+                    - import pandas as pd
+                    - import argparse
             
             - `add_chr_reference.py`
             
                 - Python env: 
-                    import pandas as pd
-                    import argparse
-                    from Bio import SeqIO
+                    - import pandas as pd
+                    - import argparse
+                    - from Bio import SeqIO
         
         - Tool: 
             - **[SeqKit](https://bioinf.shenwei.me/seqkit/)**
@@ -186,7 +186,7 @@
             - **[Winnowmap](https://github.com/marbl/Winnowmap)**
             
         - Python env:
-            verkko
+            - verkko
     
         - Input:
             - assembly_chr.fasta
@@ -341,5 +341,3 @@
             - dot_plot.pdf
             - dot_plot.png
             - alignment.bed
-    
-    
