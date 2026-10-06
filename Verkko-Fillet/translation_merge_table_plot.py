@@ -842,7 +842,7 @@ def upload_files(verkkoDir, rDNA_fasta, new_row):
             new_row_df = format_dict_to_df(new_row)
             #add new data to translation file
             print('translation1')
-            translation_hap1 = filter_concat_addrow(new_row_df, translation_hap1, new_row, 'dam', 'haplotype1')
+            translation_hap1 = filter_concat_addrow(new_row_df, translation_hap1, new_row, 'sire', 'haplotype1')
     else:
         print(verkkoDir[:-1] + "_verkko_fillet/chromosome_assignment/translation_hap1 not found")
 
@@ -856,7 +856,7 @@ def upload_files(verkkoDir, rDNA_fasta, new_row):
             new_row_df = format_dict_to_df(new_row)          
             #add new data to translation file
             print('translation2')
-            translation_hap2 = filter_concat_addrow(new_row_df, translation_hap2, new_row, 'sire', 'haplotype2')
+            translation_hap2 = filter_concat_addrow(new_row_df, translation_hap2, new_row, 'dam', 'haplotype2')
     else:
         print(verkkoDir[:-1] + "_verkko_fillet/chromosome_assignment/translation_hap2 not found")
   
