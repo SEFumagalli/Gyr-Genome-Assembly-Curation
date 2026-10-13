@@ -112,10 +112,10 @@ verkko_fillet_dir="/assembly/verkko2.2.1_hifi-duplex_tporec_verkko_fillet"
     
     cd ..
     
-    mkdir 6-rukki && cd 6-rukki (if the assembly was created without trio data - look for similar files in 8-hicPipeline)
+    mkdir 6-rukki && cd 6-rukki (if the assembly was created without trio data - look for similar files in 8-hicPipeline called rukki.paths.gaf and rukki.paths.tsv)
     
-    cp $patch_dir/gaps/gap.paths.gaf rukki.paths.gaf
-    cp $patch_dir/gaps/gap.paths.gaf rukki.paths.tsv
+    cp $patch_dir/gaps/gap.paths.gaf unitig-unrolled-unitig-unrolled-popped-unitig-normal-connected-tip.paths.gaf
+    cp $patch_dir/gaps/gap.paths.gaf unitig-unrolled-unitig-unrolled-popped-unitig-normal-connected-tip.paths.tsv
     cp $verkko_dir/6-rukki/label1 .
     cp $verkko_dir/6-rukki/label2 .
     cp $verkko_dir/6-rukki/unitig-unrolled-unitig-unrolled-popped-unitig-normal-connected-tip.colors.csv .

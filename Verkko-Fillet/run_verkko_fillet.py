@@ -110,28 +110,26 @@ else:
     print('chromosome.map missing: ' + main_dir)
     sys.exit('chromosome.map not found - please refer to README')
 
-                                          
-vf.tl.convertRefName(args.ref_fasta, map_file, out_fasta="converted_reference")
-
+#if you had duplicate contig names listed in the translation_hap files in chromosome_assignment vf folder and you removed one,
 #force chrAssign to rerun and recreate the translation files -- add flag: force=True
-#to rerun chrAssign -- must unhash convertRefName and #5 Chromosome assignment if loop 
-#if you modified the translation_hap files in chromosome_assignment vf folder and you want to recreate everything downstream, hash out chrAssign and convertRefName
-vf.tl.chrAssign(obj = obj, ref = "converted_reference", datatype=args.phase_datatype, chr_num=args.exp_chr_num, id_thr=args.mashmap_id_threshold)
-
-
-#Create translation_merge file and contigPlot
-print('uploading plot files')
+#to rerun chrAssign -- must unhash convertRefName and #5 Chromosome assignment if loop
+vf.tl.convertRefName(args.ref_fasta, map_file, out_fasta="converted_reference")
 
 #if previously ran verkko-fillet and a T2T contig/scaffold was not associated with a chromosome was noted in the .std file
 #identify associated chromosome in mashmap
 #now you need to add a new row to a translation file with your data
 #use this flag in the sh file: --new_row to add a dictionary containing the contig name, chr name, seq length, and ref length
+#hash out chrAssign and convertRefName
+vf.tl.chrAssign(obj = obj, ref = "converted_reference", datatype=args.phase_datatype, chr_num=args.exp_chr_num, id_thr=args.mashmap_id_threshold)
+
+
+#Create translation_merge file and contigPlot
+#if you want to remove a duplicate from appearing in the final files, hash out steps 3-5 and manually remove the duplicate from translation files
+print('uploading plot files')
 if args.new_row is not None:
     new_row = json.loads(args.new_row)
 else:
     new_row = {}
-
-#if you want to remove a duplicate from appearing in the final files, hash out steps 3-5 and manually remove the duplicate from translation files
 
 ctgs, scfs, translation_hap1, translation_hap2, telo, gap, scfmap, paths, rDNA = translation_merge_table_plot.upload_files(verkkoDir, args.rDNA_fasta_fai, new_row)
 
