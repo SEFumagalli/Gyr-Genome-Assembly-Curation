@@ -116,16 +116,16 @@ def contigPlot(translation_merged, datatype, ctgs, scfs, verkkoDir, num_chromos)
                     #print('no ctgs or scfs files')
                     #if telo number is less than 2 or NaN
                         if row['telomeres'] < 2 or pd.isna(row['telomeres']) == True:
-                            #print('color3')
-                            color = 3
+                            #print('red')
+                            color = 2
                 else:
                     #print('only scfs file')
                     #check for empty row
                     if pd.isna(row['scfs']):
                         #if telo number is less than 2 or NaN
                         if row['telomeres'] < 2 or pd.isna(translation_merged.at[num, 'telomeres']) == True:
-                            #print('color3')
-                            color = 3
+                            #print('red')
+                            color = 2
                     else:
                         #scfs row exists
                         #check if there are gaps
@@ -133,8 +133,8 @@ def contigPlot(translation_merged, datatype, ctgs, scfs, verkkoDir, num_chromos)
                             continue
                         else:
                             #gaps exist
-                            #print('color2')
-                            color = 2
+                            #print('purple')
+                            color = 1
             else:
                 #ctgs df not emtpy
                 if ctgs.shape[0] == 0:
@@ -151,8 +151,8 @@ def contigPlot(translation_merged, datatype, ctgs, scfs, verkkoDir, num_chromos)
                             #check number of telomeres
                             if row['telomeres'] < 2 or pd.isna(translation_merged.at[num, 'telomeres']) == True:
                                 #print('1 telomere or NA')
-                                #print('color3')
-                                color = 3
+                                #print('red')
+                                color = 2
                         else:
                             #print('scf T2T')
                             #check for gaps
@@ -160,15 +160,15 @@ def contigPlot(translation_merged, datatype, ctgs, scfs, verkkoDir, num_chromos)
                                 continue
                             else:
                                 #print('found gaps')
-                                #print('color2')
-                                color = 2
+                                #print('purple')
+                                color = 1
                     else:
                         #print('both ctgs and scfs files')
                         #check for gaps
                         if pd.isna(translation_merged.at[num, 'gaps']):
                             #print('no gaps')
-                            #print('color1')
-                            color = 1
+                            #print('green')
+                            color = 0
             
         
             #add new information to dictionary
@@ -230,14 +230,14 @@ def contigPlot(translation_merged, datatype, ctgs, scfs, verkkoDir, num_chromos)
         fig, ax = plt.subplots(figsize=(8, 15))
     else:
         fig, ax = plt.subplots(figsize=(8, 12))
-    myColors = [(0.2, 0.7, 0.3, 0.5), (0.3, 0.3, 0.6, 0.6), (0.9, 0.6, 0.5, 0.9)]
+    myColors = ["#9CD7AA","#7C7DB9", "#E5A08C", "#FFFFFF"]
     cmap = LinearSegmentedColormap.from_list('Custom', myColors, len(myColors))    
     ax = sns.heatmap(df, ax=ax, center=2, cmap=cmap,
                  linewidths=.5, linecolor='lightgray',
                  cbar_kws={'orientation': 'vertical', 'shrink': 0.5})
     colorbar = ax.collections[0].colorbar
     colorbar.set_ticks([1.35, 2, 2.6])
-    colorbar.set_ticklabels(['contig\n(complete T2T w/o gaps)', 'scaffold\n(T2T w/ gaps or tangles)', 'not a scaffold\n(missing one of the telomere)'])
+    colorbar.set_ticklabels(['Contig\n(T2T w/o gaps)', 'Scaffold\n(T2T w/ gaps/tangles)', 'Not a Scaffold\n(missing telomere)', "Undetermined"])
     ax.set_title(fig_name, fontdict={'size': 14})
     ax.set_ylabel('Chromosome')
     ax.set_xlabel('Haplotype')
