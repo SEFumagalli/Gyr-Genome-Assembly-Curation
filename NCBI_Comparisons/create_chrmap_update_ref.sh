@@ -79,6 +79,8 @@ reference=$(basename ${reference_path})
 
 ### chromosome.map formating ###
 
+## if chromosome names like below are not available, use the naming schema: chr1, chr2, chr3... so that the mapping (right-most column) uses chr_1, chr_2, chr_3...
+
 # ****if no sequence_report.tsv file exists on NCBI -OR- more curation steps are needed beyond what the sequence_report.tsv can provide****
 
 ## 1) Create chromosome map file
@@ -160,6 +162,12 @@ reference=$(basename ${reference_path})
 ##
 ## ----------------------------------------------------------------------------------------------------------------------------------
 
+#grab file names
+sequence_report=$(basename ${sequence_report})
+reference=$(basename ${reference})
+echo $reference
+echo $sequence_report
+
 
 #check reference file 
 if [[ $reference =~ \.gz$ ]]; then
@@ -171,11 +179,14 @@ else
 	echo "reference does not need unzipping"
 fi
 
-
 #create list of ids from genomic assembly
-echo "creating assembly fai"
-module load seqkit
-seqkit faidx $reference
+if [ -e "${reference}.fai" ]; then
+        echo "found assembly.fna.fai"
+else
+        echo "creating assembly fai"
+        module load seqkit
+        seqkit faidx $reference
+fi
 reference_ids="${reference}.fai"
 
 
@@ -209,6 +220,7 @@ ext="${reference##*.}"
 updated_reference="${base}.chr.${ext}"
 echo "$updated_reference"
 
+module load seqkit
 seqkit faidx $updated_reference	
 
 date

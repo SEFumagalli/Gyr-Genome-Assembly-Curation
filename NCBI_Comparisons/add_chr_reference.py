@@ -105,14 +105,29 @@ def chromosome_mapping(ref, file_name, head, tail, chr_map, extra_step):
                 newfile.write("\n")
                 found = 1
         else:
-            for c in chr_map:
-                #find id in chomos_list
-                if c.startswith(new_id):
-                    #save id to file
-                    newfile.write('>' + c)
-                    #next line
-                    newfile.write("\n")
-                    found = 1
+            if new_id.startswith('chr'):
+                #print('modified chromosome names')
+                #modified chromosome names
+                for c in chr_map:
+                    parts = c.split('_')
+                    if new_id == parts[0]:
+                        #print('found_match=',parts[0])
+                        #print('found_match=',new_id)
+                        #save id to file
+                        newfile.write('>' + c)
+                        #next line
+                        newfile.write("\n")
+                        found = 1
+            else:
+                #regular chromosome names
+                for c in chr_map:
+                    #find id in chomos_list
+                    if c.startswith(new_id):
+                        #save id to file
+                        newfile.write('>' + c)
+                        #next line
+                        newfile.write("\n")
+                        found = 1
         #if id has no chromosome name match
         if found == 0:
             #save original id to file
